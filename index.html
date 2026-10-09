@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Санкт-Петербург: Душа Невы | Интерактивный путеводитель</title>
+    <meta name="description" content="Единый интерактивный путеводитель и авторский туристический маршрут по Санкт-Петербургу с плавными анимациями в стиле Apple, 3D эффектами, аудиогидом и картой.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Leaflet CSS (Map) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <span class="logo-icon"><i class="fa-solid fa-anchor"></i></span>
+                <span class="logo-text">Санкт-Петербург <span class="accent-text">• Душа Невы</span></span>
+            </a>
+
+            <nav class="nav-menu" id="navMenu">
+                <a href="#about" class="nav-link">О регионе</a>
+                <a href="#geography" class="nav-link">География</a>
+                <a href="#economy" class="nav-link">Экономика</a>
+                <a href="#culture" class="nav-link">Культура & Люди</a>
+                <a href="#route-section" class="nav-link highlight-link">Маршрут «Душа Невы»</a>
+                <a href="#quiz" class="nav-link">Викторина</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="ambient-sound-btn" id="ambientToggle" title="Звуки Петербурга (Дождь & Волна)">
+                    <i class="fa-solid fa-cloud-rain"></i>
+                    <span class="sound-wave"><span></span><span></span><span></span></span>
+                </button>
+                <button class="theme-toggle-btn" id="themeToggle" title="Сменить тему">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Меню">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with Scrollytelling Apple Effect -->
+    <section class="hero-section" id="hero">
+        <div class="hero-bg-overlay"></div>
+        <div class="hero-particles" id="particlesCanvas"></div>
+
+        <div class="hero-content">
+            <div class="badge-tag Apple-badge" data-gsap="fade-down">
+                <i class="fa-solid fa-compass"></i> Официальный Интерактивный Путеводитель
+            </div>
+            <h1 class="hero-title" data-gsap="hero-title">
+                Санкт-Петербург
+            </h1>
+            <p class="hero-subtitle" data-gsap="fade-up">
+                Культурная столица России. Симфония архитектуры, истории и воды.
+            </p>
+
+            <div class="hero-stats-row" data-gsap="fade-up-delay">
+                <div class="hero-stat-card">
+                    <span class="stat-number" data-count="1703">0</span>
+                    <span class="stat-label">Год основания</span>
+                </div>
+                <div class="hero-stat-card">
+                    <span class="stat-number" data-count="5600000">0</span>
+                    <span class="stat-label">Жителей</span>
+                </div>
+                <div class="hero-stat-card">
+                    <span class="stat-number" data-count="342">0</span>
+                    <span class="stat-label">Мостов</span>
+                </div>
+                <div class="hero-stat-card">
+                    <span class="stat-number" data-count="84">0</span>
+                    <span class="stat-label">Река и каналов</span>
+                </div>
+            </div>
+
+            <div class="hero-cta-group" data-gsap="fade-up-more">
+                <a href="#route-section" class="apple-btn primary-btn">
+                    <span>Исследовать маршрут</span>
+                    <i class="fa-solid fa-arrow-down"></i>
+                </a>
+                <a href="#about" class="apple-btn secondary-btn">
+                    <span>Узнать больше</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-scroll-indicator">
+            <span class="mouse">
+                <span class="wheel"></span>
+            </span>
+            <span class="scroll-text">Листайте вниз</span>
+        </div>
+    </section>
+
+    <!-- Quick Audio Player Bar -->
+    <div class="ambient-player-bar hidden" id="ambientPlayerBar">
+        <div class="ambient-info">
+            <i class="fa-solid fa-water"></i>
+            <span>Атмосфера Невы & Ленинградского дождя</span>
+        </div>
+        <div class="ambient-controls">
+            <button id="playRainBtn"><i class="fa-solid fa-cloud-showers-heavy"></i> Дождь</button>
+            <button id="playWavesBtn"><i class="fa-solid fa-water"></i> Волны Невы</button>
+            <button id="stopAmbientBtn"><i class="fa-solid fa-stop"></i> Выкл</button>
+        </div>
+    </div>
+
+    <main class="main-container">
+
+        <!-- SECTION 1: ABOUT & GENERAL OVERVIEW -->
+        <section class="content-section" id="about">
+            <div class="section-header" data-reveal>
+                <span class="section-subtitle">Раздел I • Обзор региона</span>
+                <h2 class="section-title">Северная Венеция: Великий Город на Неве</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="apple-grid-2">
+                <div class="glass-card" data-reveal="left">
+                    <div class="card-icon"><i class="fa-solid fa-landmark-dome"></i></div>
+                    <h3>Субъект Российской Федерации</h3>
+                    <p class="text-description">
+                        Санкт-Петербург — город федерального значения Российской Федерации, важнейший экономический, научный и культурный центр страны, а также крупный транспортный узел. Расположен на северо-западе РФ, в устье реки Невы на побережье Невской губы Финского залива.
+                    </p>
+                    <div class="pill-tags">
+                        <span class="pill">Северо-Западный ФО</span>
+                        <span class="pill">Площадь: 1 439 км²</span>
+                        <span class="pill">Часовой пояс: UTC+3</span>
+                    </div>
+                </div>
+
+                <div class="glass-card" data-reveal="right">
+                    <div class="card-icon"><i class="fa-solid fa-crown"></i></div>
+                    <h3>Исторический статус & Наследие</h3>
+                    <p class="text-description">
+                        Основанный 27 мая 1703 года первым российским императором Петром I, город являлся столицей Российского государства на протяжении более двух веков (1712–1918 гг.). Исторический центр Санкт-Петербург и связанные с ним группы памятников внесены в список Всемирного наследия ЮНЕСКО.
+                    </p>
+                    <div class="pill-tags">
+                        <span class="pill">ЮНЕСКО #540</span>
+                        <span class="pill">Столица 1712–1918</span>
+                        <span class="pill">Город-Герой</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: GEOGRAPHY, CLIMATE & HYDROGRAPHY -->
+        <section class="content-section" id="geography">
+            <div class="section-header" data-reveal>
+                <span class="section-subtitle">Раздел II • География и Природа</span>
+                <h2 class="section-title">География, Климат и Белые Ночи</h2>
+                <p class="section-desc">Уникальное географическое положение на 42 островах Невской дельты.</p>
+            </div>
+
+            <div class="apple-card-feature" data-reveal="scale">
+                <div class="feature-content">
+                    <span class="feature-tag">Природное явление</span>
+                    <h3>Знаменитые Белые Ночи</h3>
+                    <p>С конца мая по середину июля Санкт-Петербург погружается в волшебную атмосферу белых ночей. Солнце опускается за горизонт не более чем на 6°, создавая непрерывные вечерние сумерки.</p>
+                    <div class="stats-mini-flex">
+                        <div>
+                            <strong id="whiteNightsDays">23 дня</strong>
+                            <span>Официальный период</span>
+                        </div>
+                        <div>
+                            <strong>18 ч 50 мин</strong>
+                            <span>Макс. день (21 июня)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-image-placeholder photo-card-1">
+                    <div class="glass-badge">Финский Залив & Нева</div>
+                </div>
+            </div>
+
+            <!-- Climate Chart Interactive Widget -->
+            <div class="glass-card full-width-card" data-reveal="up">
+                <div class="card-header-flex">
+                    <div>
+                        <h3><i class="fa-solid fa-temperature-half"></i> Климатический профиль Санкт-Петербурга</h3>
+                        <p class="subtext">Среднемесячная температура (°C) и норма осадков (мм)</p>
+                    </div>
+                    <div class="chart-controls">
+                        <button class="chart-btn active" id="btnTempChart">Температура</button>
+                        <button class="chart-btn" id="btnRainChart">Осадки</button>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="climateChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: ECONOMY, INFRASTRUCTURE & INDUSTRY -->
+        <section class="content-section" id="economy">
+            <div class="section-header" data-reveal>
+                <span class="section-subtitle">Раздел III • Экономика и Инновации</span>
+                <h2 class="section-title">Экономический и Промышленный гигант</h2>
+            </div>
+
+            <div class="apple-grid-3">
+                <div class="glass-card feature-hover" data-reveal="up" data-delay="100">
+                    <div class="icon-box color-blue"><i class="fa-solid fa-ship"></i></div>
+                    <h3>Судостроение & Судоходство</h3>
+                    <p>Санкт-Петербург — родина российского флота. Здесь расположены крупнейшие верфи страны: «Адмиралтейские верфи», «Балтийский завод», «Северная верфь». Морской порт — один из важнейших хабов Балтики.</p>
+                </div>
+
+                <div class="glass-card feature-hover" data-reveal="up" data-delay="200">
+                    <div class="icon-box color-purple"><i class="fa-solid fa-microchip"></i></div>
+                    <h3>IT, Наука и Фармацевтика</h3>
+                    <p>Крупнейший научно-образовательный центр. Мощнейший фармацевтический кластер и ведущие IT-компании, включая разработку ПО, робототехнику и искусственный интеллект.</p>
+                </div>
+
+                <div class="glass-card feature-hover" data-reveal="up" data-delay="300">
+                    <div class="icon-box color-gold"><i class="fa-solid fa-plane-departure"></i></div>
+                    <h3>Транспортная инфраструктура</h3>
+                    <p>Аэропорт Пулково, 5 железнодорожных вокзалов, развитая система метрополитена (самого глубокого в мире по средней глубине заложения) и ЗСД (Западный скоростной диаметр).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: CULTURE, RELIGION & FAMOUS PEOPLE -->
+        <section class="content-section" id="culture">
+            <div class="section-header" data-reveal>
+                <span class="section-subtitle">Раздел IV • Культура, Религия и Люди</span>
+                <h2 class="section-title">Духовное наследие и Великие имена</h2>
+                <p class="section-desc">Санкт-Петербург — конфессионально открытый мегаполис и полигон гениальных умов.</p>
+            </div>
+
+            <!-- Filter Tabs for Famous People -->
+            <div class="filter-container" data-reveal="up">
+                <button class="filter-btn active" data-filter="all">Все личности</button>
+                <button class="filter-btn" data-filter="literature">Литература</button>
+                <button class="filter-btn" data-filter="science">Наука</button>
+                <button class="filter-btn" data-filter="art">Искусство & Музыка</button>
+                <button class="filter-btn" data-filter="history">Правители & Государство</button>
+            </div>
+
+            <div class="people-grid" id="peopleGrid">
+                <!-- Dynamically populated or rendered static items with filter attributes -->
+                <div class="person-card glass-card" data-category="literature" data-reveal="up">
+                    <div class="person-avatar avatar-pushkin"></div>
+                    <h4>Александр Пушкин</h4>
+                    <span class="person-role">Поэт, прозаик</span>
+                    <p>Создал гениальные произведения «Евгений Онегин», «Медный всадник», увековечившие Санкт-Петербург в мировой литературе.</p>
+                </div>
+
+                <div class="person-card glass-card" data-category="literature" data-reveal="up">
+                    <div class="person-avatar avatar-dostoevsky"></div>
+                    <h4>Фёдор Достоевский</h4>
+                    <span class="person-role">Писатель, мыслитель</span>
+                    <p>Автор «Преступления и наказания», «Идиота». Раскрыл психологический и мистический образ Петербурга XIX века.</p>
+                </div>
+
+                <div class="person-card glass-card" data-category="science" data-reveal="up">
+                    <div class="person-avatar avatar-mendeleev"></div>
+                    <h4>Дмитрий Менделеев</h4>
+                    <span class="person-role">Учёный-энциклопедист</span>
+                    <p>Открыл Периодический закон химических элементов, работая в Санкт-Петербургском государственном университете.</p>
+                </div>
+
+                <div class="person-card glass-card" data-category="art" data-reveal="up">
+                    <div class="person-avatar avatar-tchaikovsky"></div>
+                    <h4>Пётр Чайковский</h4>
+                    <span class="person-role">Композитор</span>
+                    <p>Великий композитор, выпускник Петербургской консерватории, создатель балетов «Лебединое озеро» и «Щелкунчик».</p>
+                </div>
+
+                <div class="person-card glass-card" data-category="history" data-reveal="up">
+                    <div class="person-avatar avatar-peter"></div>
+                    <h4>Пётр I Великий</h4>
+                    <span class="person-role">Император Всероссийский</span>
+                    <p>Основатель Санкт-Петербурга, проведший масштабные реформы и заложивший фундамент современной России.</p>
+                </div>
+
+                <div class="person-card glass-card" data-category="art" data-reveal="up">
+                    <div class="person-avatar avatar-pavlova"></div>
+                    <h4>Анна Павлова</h4>
+                    <span class="person-role">Прима-балерина</span>
+                    <p>Легенда Мариинского театра, прославившая русский балет по всему миру своим исполнением «Умирающего лебедя».</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 5: TOURIST ROUTE (MAIN FEATURE REQUIREMENT) -->
+        <section class="content-section route-section-wrapper" id="route-section">
+            <div class="section-header" data-reveal>
+                <div class="route-badge"><i class="fa-solid fa-route"></i> Авторский Туристический Маршрут</div>
+                <h2 class="section-title">Маршрут «Душа Санкт-Петербурга: От Дворцовой до Коломны»</h2>
+                <p class="section-desc">
+                    Уникальный логически обоснованный маршрут из 12 ключевых остановок. Каждая точка обладает огромной историко-культурной, архитектурной и стратегической значимостью.
+                </p>
+            </div>
+
+            <!-- Interactive Map Container -->
+            <div class="map-section-card glass-card" data-reveal="scale">
+                <div class="map-controls-bar">
+                    <div class="map-title-info">
+                        <i class="fa-solid fa-map-location-dot"></i> Интерактивная карта (12 точек)
+                    </div>
+                    <div class="map-actions">
+                        <button class="map-btn" id="btnResetMapView"><i class="fa-solid fa-arrows-to-eye"></i> Вся трасса</button>
+                        <button class="map-btn" id="btnToggleRouteLine"><i class="fa-solid fa-draw-polygon"></i> Линия маршрута</button>
+                    </div>
+                </div>
+
+                <div id="leafletMap" class="leaflet-map-container"></div>
+            </div>
+
+            <!-- Stops List & Scrollytelling Detail Display -->
+            <div class="stops-wrapper">
+                <div class="stops-sidebar">
+                    <h3 class="sidebar-title"><i class="fa-solid fa-list-ol"></i> Остановки маршрута</h3>
+                    <div class="stops-list-nav" id="stopsListNav">
+                        <!-- Dynamically filled with stop items -->
+                    </div>
+                </div>
+
+                <div class="stop-detail-display glass-card" id="stopDetailCard">
+                    <div class="stop-header-flex">
+                        <span class="stop-number-badge" id="stopNumber">Остановка 01 из 12</span>
+                        <button class="audio-guide-btn" id="audioGuideBtn">
+                            <i class="fa-solid fa-volume-high"></i> <span>Аудиогид (Озвучить)</span>
+                        </button>
+                    </div>
+
+                    <h3 class="stop-title" id="stopTitle">1. Дворцовая площадь и Государственный Эрмитаж</h3>
+                    <div class="stop-meta">
+                        <span id="stopCoords"><i class="fa-solid fa-location-pin"></i> 59.9398° N, 30.3146° E</span>
+                        <span id="stopCategory"><i class="fa-solid fa-tag"></i> Музейное наследие</span>
+                    </div>
+
+                    <div class="stop-image-box">
+                        <img id="stopImage" src="https://images.unsplash.com/photo-1558642084-fd07fae5282e?auto=format&fit=crop&w=1200&q=80" alt="Дворцовая площадь">
+                        <div class="image-caption" id="stopImageCaption">Дворцовая площадь с Александровской колонной</div>
+                    </div>
+
+                    <div class="stop-body-text">
+                        <h4><i class="fa-solid fa-book-open"></i> Подробное описание и факты</h4>
+                        <p id="stopDescription">
+                            Главная площадь Санкт-Петербурга и один из самых выдающихся architectural ансамблей в мире. В центре площади возвышается Александровская колонна (47.5 м), возведенная в честь победы над Наполеоном. Главное здание — Зимний дворец, бывшая резиденция российских императоров, в которой сегодня располагается Государственный Эрмитаж.
+                        </p>
+
+                        <div class="significance-box">
+                            <h4><i class="fa-solid fa-star"></i> Историко-культурная и общероссийская значимость</h4>
+                            <p id="stopSignificance">
+                                Символ российской государственности и военной славы. Эрмитаж хранит более 3 миллионов произведений искусства, являясь национальным достоянием России и мировым сокровищем.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="stop-navigation-footer">
+                        <button class="nav-stop-btn" id="prevStopBtn"><i class="fa-solid fa-chevron-left"></i> Предыдущая</button>
+                        <button class="nav-stop-btn" id="nextStopBtn">Следующая <i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: INTERACTIVE QUIZ & KNOWLEDGE TEST -->
+        <section class="content-section" id="quiz">
+            <div class="section-header" data-reveal>
+                <span class="section-subtitle">Раздел VI • Интерактивный Тест</span>
+                <h2 class="section-title">Знаток Санкт-Петербурга</h2>
+                <p class="section-desc">Проверьте свои знания о Санкт-Петербурге, ответив на 5 увлекательных вопросов.</p>
+            </div>
+
+            <div class="glass-card quiz-card" data-reveal="up">
+                <div id="quizContainer">
+                    <div class="quiz-progress">
+                        <span id="quizQuestionCount">Вопрос 1 из 5</span>
+                        <div class="quiz-bar"><div id="quizBarInner" style="width: 20%;"></div></div>
+                    </div>
+
+                    <h3 class="quiz-question-title" id="quizQuestion">Загрузка вопроса...</h3>
+
+                    <div class="quiz-options-grid" id="quizOptions">
+                        <!-- Options generated dynamically -->
+                    </div>
+
+                    <div class="quiz-feedback hidden" id="quizFeedback"></div>
+
+                    <div class="quiz-footer">
+                        <button class="apple-btn primary-btn hidden" id="nextQuestionBtn">Следующий вопрос</button>
+                    </div>
+                </div>
+
+                <div id="quizResultContainer" class="hidden text-center">
+                    <div class="result-icon"><i class="fa-solid fa-trophy"></i></div>
+                    <h3>Тест завершён!</h3>
+                    <p class="result-score" id="resultScoreText">Ваш результат: 5 из 5</p>
+                    <p id="resultComment">Вы настоящий знаток Северной столицы!</p>
+                    <button class="apple-btn primary-btn" id="restartQuizBtn"><i class="fa-solid fa-rotate-right"></i> Пройти заново</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: EXTERNAL RESOURCES & REFERENCES -->
+        <section class="content-section" id="resources">
+            <div class="section-header" data-reveal>
+                <span class="section-subtitle">Раздел VII • Ресурсы и Ссылки</span>
+                <h2 class="section-title">Дополнительные источники</h2>
+            </div>
+
+            <div class="resources-grid">
+                <a href="https://spbculture.ru" target="_blank" rel="noopener" class="resource-card glass-card">
+                    <i class="fa-solid fa-building-columns"></i>
+                    <div>
+                        <h4>Комитет по культуре СПб</h4>
+                        <p>Официальные анонсы, выставки и культурные мероприятия.</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square arrow"></i>
+                </a>
+
+                <a href="https://hermitagemuseum.org" target="_blank" rel="noopener" class="resource-card glass-card">
+                    <i class="fa-solid fa-archway"></i>
+                    <div>
+                        <h4>Государственный Эрмитаж</h4>
+                        <p>Официальный сайт главного музея страны и коллекций.</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square arrow"></i>
+                </a>
+
+                <a href="https://visit-petersburg.ru" target="_blank" rel="noopener" class="resource-card glass-card">
+                    <i class="fa-solid fa-map"></i>
+                    <div>
+                        <h4>Visit Petersburg</h4>
+                        <p>Официальный туристский портал Санкт-Петербурга.</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square arrow"></i>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <i class="fa-solid fa-anchor"></i> Санкт-Петербург • Душа Невы
+                </div>
+                <p>Авторский интерактивный путеводитель и экскурсионный маршрут по Северной столице. Создано с любовью к истории, культуре и архитектуре Петербурга.</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Навигация</h4>
+                <ul>
+                    <li><a href="#about">О регионе</a></li>
+                    <li><a href="#geography">География</a></li>
+                    <li><a href="#economy">Экономика</a></li>
+                    <li><a href="#culture">Культура & Личности</a></li>
+                    <li><a href="#route-section">Туристический маршрут</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-copy">
+                <p>&copy; 2026 Интерактивный Путеводитель «Санкт-Петербург: Душа Невы».</p>
+                <p class="subtext">Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+</html>
