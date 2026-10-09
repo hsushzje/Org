@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
             address: "Дворцовая площадь, 2 / набережная Дворцовая, 38",
             coords: [59.9398, 30.3146],
             category: "Музейное наследие",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Palace_Square_in_Saint_Petersburg.jpg/1280px-Palace_Square_in_Saint_Petersburg.jpg",
+            image: "https://upload.wikimedia.org/wikipedia/commons/5/56/Alexander_column.jpg",
             imageCaption: "Дворцовая площадь с Александровской колонной и Зимним дворцом",
             description: "Главная площадь Санкт-Петербурга и один из наиболее совершенных архитектурных ансамблей мира. В центре площади возвышается Александровская колонна высотой 47,5 метра, вытесанная из цельного монолита красного гранита в честь победы России над Наполеоном. Северную часть площади занимает пышный Зимний дворец — бывшая резиденция российских императоров, созданная архитектором Бартоломео Растрелли в стиле пышного елизаветинского барокко. Ныне в нем располагается Государственный Эрмитаж.",
             significance: "Символ российской государственности и мировой культуры. Коллекция Эрмитажа насчитывает свыше 3 миллионов произведений искусства, включая шедевры Леонардо да Винчи, Рембрандта и Тициана."
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
             address: "Сенатская площадь, 1",
             coords: [59.9364, 30.3022],
             category: "Памятник & История",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Saint_Petersburg_Bronze_Horseman_1.jpg/1280px-Saint_Petersburg_Bronze_Horseman_1.jpg",
+            image: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Bronze_Horseman_02.jpg",
             imageCaption: "Памятник Петру I (Медный всадник) на Гром-камне",
             description: "Величайший памятник основателю города императору Петру I, торжественно открытый 7 августа 1782 года по указу Екатерины II. Автором скульптуры выступил французский мастер Этьен Морис Фальконе. Бронзовая конная статуя вздыблена над пропастью на гигантском пьедестале — «Гром-камне» весом более 1500 тонн, доставленном из окрестностей Лахты. Поэма А.С. Пушкина навсегда сделала имя «Медный всадник» поэтической метафорой Петербурга.",
             significance: "Главный градостроительный и символический знак Санкт-Петербурга, выражающий непреклонную волю и стремительный порыв России к просвещению и морскому могуществу."
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             address: "Исаакиевская площадь, 4",
             coords: [59.9341, 30.3061],
             category: "Архитектура & Религия",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Saint_Isaac%27s_Cathedral_SPB.jpg/1280px-Saint_Isaac%27s_Cathedral_SPB.jpg",
+            image: "https://upload.wikimedia.org/wikipedia/commons/8/83/Saint_Isaac%27s_Cathedral_in_SPB.jpeg",
             imageCaption: "Величественный купол и колоннада Исаакиевского собора",
             description: "Крупнейший православный храм Санкт-Петербурга и один из самых высоких купольных соборов мира (101,5 м). Строительство собора продолжалось 40 лет (1818–1858) под руководством архитекторов Огюста Монферрана. Здание обрамляют 112 цельных гранитных колонн весом до 114 тонн каждая. На позолоту главного купола и креста ушло более 100 килограммов чистого золота. Внутри собора сохраняются уникальные витражи, живопись и мозаики общей площадью более 600 кв. метров.",
             significance: "Главный кафедральный храм Российской империи, выдающийся памятник позднего классицизма и технический шедевр мирового зодчества."
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             address: "Невский проспект, 25 / Казанская площадь, 2",
             coords: [59.9343, 30.3246],
             category: "Главная артерия",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Kazan_Cathedral_SPB_2017.jpg/1280px-Kazan_Cathedral_SPB_2017.jpg",
+            image: "https://upload.wikimedia.org/wikipedia/commons/2/24/Kazan_Cathedral_Saint_Petersburg.jpg",
             imageCaption: "Полукруглая колоннада Казанского собора на Невском проспекте",
             description: "Казанский кафедральный собор, построение которого завершилось в 1811 году по проекту выдающегося русского архитектора Андрея Воронихина. Архитектурный облик здания с уникальной полукруглой грандиозной колоннадой из 94 колонн обращен к Невскому проспекту. В соборе погребен великий русский полководец Михаил Илларионович Кутузов, а также хранятся трофейные ключи от взятых французских городов и чудотворная Казанская икона Божией Матери.",
             significance: "Главный мемориал русской военной славы и победы в Отечественной войне 1812 года, а также духовное сердце главнейшей магистрали города."
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             address: "набережная канала Грибоедова, 2б",
             coords: [59.9401, 30.3289],
             category: "Шедевр мозаики",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Church_of_the_Saviour_on_Spilled_Blood_in_St_Petersburg.jpg/1280px-Church_of_the_Saviour_on_Spilled_Blood_in_St_Petersburg.jpg",
+            image: "https://upload.wikimedia.org/wikipedia/commons/a/a6/Spb_06-2017_img47_Church_on_the_Blood.jpg",
             imageCaption: "Мозаичные купола и фасад собора Воскресения Христова",
             description: "Православный собор Воскресения Христова, воздвигнутый на том самом месте, где 1 марта 1881 года в результате покушения народовольцев был смертельно ранен император Александр II. Храм построен в так называемом «русском стиле» по проекту Альфреда Парланда и архимандрита Игнатия, вызывая ассоциации с собором Василия Блаженного в Москве. Внутреннее убранство представляет собой крупнейшую в Европе коллекцию мозаики — более 7500 квадратных метров полотен.",
             significance: "Уникальный царский мемориал и драгоценный музей монументального мозаичного искусства мирового уровня."
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
             address: "Летний сад, Набережная Кутузова, 2",
             coords: [59.9449, 30.3355],
             category: "Парковое искусство",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Summer_Garden_SPB_Alley.jpg/1280px-Summer_Garden_SPB_Alley.jpg",
+            image: "https://upload.wikimedia.org/wikipedia/commons/3/34/King_Midas_in_the_Summer_Garden%2C_Saint_Petersburg.jpg",
             imageCaption: "Аллеи Летнего сада с мраморными скульптурами",
             description: "Старейший парк Санкт-Петербурга, заложенный лично Петром I в 1704 году как регулярный резиденциальный сад в стиле европейского барокко. Здесь расположен Летний дворец Петра I — одно из первейших каменных зданий города. Парк знаменит своей коллекцией итальянских мраморных скульптур XVIII века, фонтанами, шпалерами и всемирно известной оградой со стороны Невы, созданной архитектором Юрием Фельтеном.",
             significance: "Жемчужина садово-паркового искусства Петровской эпохи, любимое место вдохновения великих поэтов и писателей."
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
             address: "Заячий остров, Петропавловская крепость, 3",
             coords: [59.9502, 30.3164],
             category: "Колыбель города",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Peter_and_Paul_Fortress_SPB_View.jpg/1280px-Peter_and_Paul_Fortress_SPB_View.jpg",
+            image: "https://upload.wikimedia.org/wikipedia/commons/6/64/Peter_%26_Paul_fortress_in_SPB_03.jpg",
             imageCaption: "Петропавловский собор и золоченый шпиль с ангелом",
             description: "Крепость заложена 27 мая 1703 года по совместному чертежу Петра I и инженера Жозефа Ламбера де Герена — дата основания крепости стала официальным днем рождения Санкт-Петербурга. На территории находится Петропавловский собор (архитектор Доменико Трезини) с позолоченным шпилем высотой 122,5 метра, вершину которого венчают крест и фигура парящего ангела.",
             significance: "Историческое ядро Санкт-Петербурга, первоклассный памятник русскому фортификационному искусству и усыпальница императорского дома Романовых."
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             address: "Биржевая площадь, 4",
             coords: [59.9436, 30.3060],
             category: "Ансамбль & Вид",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Strelka_Vasilievsky_Island_St_Petersburg.jpg/1280px-Strelka_Vasilievsky_Island_St_Petersburg.jpg",
+            image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Spit_of_the_Vasilievsky_Island_2007-09_1191182394.JPG",
             imageCaption: "Стрелка Васильевского острова, здание Биржи и Ростральные колонны",
             description: "Один из наиболее завораживающих архитектурных ансамблей Петербурга, где река Нева разделяется на Большую и Малую Невку. Центральным объектом выступает здание Биржи, выполненное Тома де Томоном в виде античного периптера. Перед Биржей стоят две 32-метровые Ростральные колонны, украшенные скульптурными рострами (носовыми частями) кораблей и олицетворяющие великие реки России: Волгу, Днепр, Волхов и Неву.",
             significance: "Символ морского торгового могущества России и главная панорамная смотровая точка акватории Невы."
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
             address: "Университетская набережная, 3 / 7–9",
             coords: [59.9414, 30.3045],
             category: "Наука & Образование",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kunstkamera_St_Petersburg.jpg/1280px-Kunstkamera_St_Petersburg.jpg",
+            image: "https://upload.wikimedia.org/wikipedia/commons/1/1b/Kunstkamera_SPB.jpg",
             imageCaption: "Здание Кунсткамеры — Музея антропологии и этнографии им. Петра Великого",
             description: "Первый публичный музей России, учрежденный Петром I в 1714 году для сбора редкостей, анатомических и этнографических коллекций. Башня здания Кунсткамеры увенчана астрономической сферой. Неподалеку вытянулось на 400 метров здание Двенадцати коллегий, возведенное Доменико Трезини для высших органов государственного управления, а ныне являющееся главным корпусом Санкт-Петербургского государственного университета (СПбГУ).",
             significance: "Колыбель российской академической науки, высшего образования и музейного дела."
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
             address: "Петроградская набережная, у Заячьего/Пенькового моста",
             coords: [59.9554, 30.3378],
             category: "Морская история",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Cruiser_Aurora_St_Petersburg_2018.jpg/1280px-Cruiser_Aurora_St_Petersburg_2018.jpg",
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/St_Petersbourg.-_Petrogradska%C3%AFa%2C_le_croiseur_%22Aurora%22.jpg/960px-St_Petersbourg.-_Petrogradska%C3%AFa%2C_le_croiseur_%22Aurora%22.jpg",
             imageCaption: "Легендарный крейсер 1-го ранга «Аврора» на вечной стоянке",
             description: "Бронепалубный крейсер 1-го ранга Балтийского флота, спущенный на воду в 1900 году. Корабль принимал участие в Цусимском сражении Русско-японской войны и Первой мировой войне. 25 октября (7 ноября) 1917 года холостой выстрел из носового орудия «Авроры» послужил сигналом к началу штурма Зимнего дворца. Ныне кораблю присвоен статус корабля-музея в составе Центрального военно-морского музея.",
             significance: "Легендарный памятник отечественного кораблестроения и символ ключевых исторических событий XX века."
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
             address: "Театральная площадь, 1",
             coords: [59.9257, 30.2961],
             category: "Опера & Балет",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Mariinsky_Theatre_St_Petersburg.jpg/1280px-Mariinsky_Theatre_St_Petersburg.jpg",
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/20240524_Mariinsky_Theatre_main_building_04.jpg/960px-20240524_Mariinsky_Theatre_main_building_04.jpg",
             imageCaption: "Историческое здание Мариинского театра",
             description: "Один из ведущих музыкальных театров планеты, названный в честь императрицы Марии Александровны и открытый в 1860 году по проекту Альберта Кавоса. На этой сцене состоялись мировые премьеры великих опер Мусоргского, Чайковского, Римского-Корсакова и балетов Мариуса Петипа. Театр взрастил мировых гениев сцены: от Фёдора Шаляпина до Анны Павловой, Галины Улановой и Майи Плисецкой.",
             significance: "Мировой центр оперного и балетного искусства, формирующий культурные стандарты высокого исполнительства."
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
             address: "Никольская площадь, 1 / набережная Адмиралтейского канала, 2",
             coords: [59.9224, 30.2997],
             category: "Душа Коломны",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Saint_Nicholas_Naval_Cathedral_SPB.jpg/1280px-Saint_Nicholas_Naval_Cathedral_SPB.jpg",
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/St._Nicholas_Naval_Cathedral._Saint-Petersburg._%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B9_%D0%9C%D0%BE%D1%80%D1%81%D0%BA%D0%BE%D0%B9_%D0%A1%D0%BE%D0%B1%D0%BE%D1%80._%D0%A1%D0%B0%D0%BD%D0%BA%D1%82-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3._%288857677650%29.jpg/960px-St._Nicholas_Naval_Cathedral._Saint-Petersburg._%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B9_%D0%9C%D0%BE%D1%80%D1%81%D0%BA%D0%BE%D0%B9_%D0%A1%D0%BE%D0%B1%D0%BE%D1%80._%D0%A1%D0%B0%D0%BD%D0%BA%D1%82-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3._%288857677650%29.jpg",
             imageCaption: "Николо-Богоявленский Морской собор у Крюкова канала",
             description: "Николо-Богоявленский Морской собор — выдающийся памятник елизаветинского барокко архитектора Саввы Чевакинского, традиционно являющийся духовным центром всех российских военных моряков. Рядом расположился рукотворный остров Новая Голландия — уникальный комплекс складских зданий XVIII века с арочными порталами Валлен-Деламота, отреставрированный и превращенный в самое современное культурное пространство Петербурга.",
             significance: "Атмосферное сердце исторического района Коломна, где пересекаются морские духовные традиции России и современная общественная жизнь."
@@ -181,15 +181,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // CartoDB High-Quality Tiles (CARTO / OpenStreetMap - European & American Provider)
-        const darkTilesUrl = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
-        const lightTilesUrl = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
-        const isLightMode = document.documentElement.classList.contains('light');
+        // Standard OpenStreetMap Tiles (Free, No API Key Required)
+        const osmTilesUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
-        window.mapTileLayer = L.tileLayer(isLightMode ? lightTilesUrl : darkTilesUrl, {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-            maxZoom: 19,
-            subdomains: 'abcd'
+        window.mapTileLayer = L.tileLayer(osmTilesUrl, {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 19
         }).addTo(map);
 
         const latLngs = routeStops.map(stop => stop.coords);
@@ -750,12 +747,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (window.mapTileLayer && map) {
                 map.removeLayer(window.mapTileLayer);
-                const darkTilesUrl = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
-                const lightTilesUrl = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
-                window.mapTileLayer = L.tileLayer(isLight ? lightTilesUrl : darkTilesUrl, {
-                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-                    maxZoom: 19,
-                    subdomains: 'abcd'
+                const osmTilesUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+                window.mapTileLayer = L.tileLayer(osmTilesUrl, {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                    maxZoom: 19
                 }).addTo(map);
             }
         });
