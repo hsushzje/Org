@@ -117,11 +117,15 @@
     <div class="ambient-player-bar hidden" id="ambientPlayerBar">
         <div class="ambient-info">
             <i class="fa-solid fa-water"></i>
-            <span>Атмосфера Невы & Ленинградского дождя</span>
+            <span>Звуки Санкт-Петербурга</span>
         </div>
         <div class="ambient-controls">
             <button id="playRainBtn"><i class="fa-solid fa-cloud-showers-heavy"></i> Дождь</button>
             <button id="playWavesBtn"><i class="fa-solid fa-water"></i> Волны Невы</button>
+            <div class="volume-control-wrap">
+                <i class="fa-solid fa-volume-low"></i>
+                <input type="range" id="ambientVolume" min="0" max="1" step="0.05" value="0.25" title="Громкость">
+            </div>
             <button id="stopAmbientBtn"><i class="fa-solid fa-stop"></i> Выкл</button>
         </div>
     </div>
@@ -258,7 +262,6 @@
             </div>
 
             <div class="people-grid" id="peopleGrid">
-                <!-- Dynamically populated or rendered static items with filter attributes -->
                 <div class="person-card glass-card" data-category="literature" data-reveal="up">
                     <div class="person-avatar avatar-pushkin"></div>
                     <h4>Александр Пушкин</h4>
@@ -348,6 +351,7 @@
 
                     <h3 class="stop-title" id="stopTitle">1. Дворцовая площадь и Государственный Эрмитаж</h3>
                     <div class="stop-meta">
+                        <span id="stopAddress"><i class="fa-solid fa-map-location-dot"></i> Дворцовая пл., 2</span>
                         <span id="stopCoords"><i class="fa-solid fa-location-pin"></i> 59.9398° N, 30.3146° E</span>
                         <span id="stopCategory"><i class="fa-solid fa-tag"></i> Музейное наследие</span>
                     </div>
