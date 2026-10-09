@@ -846,12 +846,12 @@ html.light .hero-title {
     border: 2px solid var(--accent-blue);
 }
 
-.avatar-pushkin { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Alexander_Pushkin_by_O._Kiprensky_%281827%2C_Tretyakov_gallery%29.jpg/400px-Alexander_Pushkin_by_O._Kiprensky_%281827%2C_Tretyakov_gallery%29.jpg'); }
-.avatar-dostoevsky { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Vasily_Perov_-_%D0%9F%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82_%D0%A4.%D0%9C.%D0%94%D0%BE%D1%81%D1%82%D0%BE%D0%B5%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_%281872%29.jpg/400px-Vasily_Perov_-_%D0%9F%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82_%D0%A4.%D0%9C.%D0%94%D0%BE%D1%81%D1%82%D0%BE%D0%B5%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_%281872%29.jpg'); }
-.avatar-mendeleev { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Dmitri_Mendeleev_1890s.jpg/400px-Dmitri_Mendeleev_1890s.jpg'); }
-.avatar-tchaikovsky { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Pyotr_Ilyich_Tchaikovsky.jpg/400px-Pyotr_Ilyich_Tchaikovsky.jpg'); }
-.avatar-peter { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Peter_der_Grosse_1712.jpg/400px-Peter_der_Grosse_1712.jpg'); }
-.avatar-pavlova { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Anna_Pavlova_1912.jpg/400px-Anna_Pavlova_1912.jpg'); }
+.avatar-pushkin { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Kiprensky_Pushkin.jpg/960px-Kiprensky_Pushkin.jpg'); }
+.avatar-dostoevsky { background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Vasily_Perov_-_%D0%9F%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82_%D0%A4.%D0%9C.%D0%94%D0%BE%D1%81%D1%82%D0%BE%D0%B5%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_-_Google_Art_Project.jpg/960px-Vasily_Perov_-_%D0%9F%D0%BE%D1%80%D1%82%D1%80%D0%B5%D1%82_%D0%A4.%D0%9C.%D0%94%D0%BE%D1%81%D1%82%D0%BE%D0%B5%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_-_Google_Art_Project.jpg'); }
+.avatar-mendeleev { background-image: url('https://upload.wikimedia.org/wikipedia/commons/8/8f/Dmitri_Mendeleev_1890s.jpg'); }
+.avatar-tchaikovsky { background-image: url('https://upload.wikimedia.org/wikipedia/commons/8/8a/Pyotr_Ilyich_Tchaikovsky.jpg'); }
+.avatar-peter { background-image: url('https://upload.wikimedia.org/wikipedia/commons/c/cf/Peter_I_of_Russia_by_anonim%2C_Versailles_type_%281697-1700%2C_Russian_museum%29.jpg'); }
+.avatar-pavlova { background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/d3/Anna_Pawlowa_%28Anna_Pavlova%29_Russian_ballet_dancer.jpg'); }
 
 .person-card h4 {
     font-size: 1.25rem;
