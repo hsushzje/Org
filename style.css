@@ -1,733 +1,1589 @@
-/**
- * SANKT-PETERSBURG: SOUL OF NEVA - MAIN JAVASCRIPT
- * Features:
- * - GSAP ScrollTrigger & Smooth Animations
- * - Interactive Leaflet Map with 12 Route Stops & Polyline
- * - Ambient Sound Generator (Web Audio API Synthesizer)
- * - Text-to-Speech Web Speech API Audio Guide
- * - Climate & Monthly Data Chart (Chart.js)
- * - Famous People Category Filter
- * - Interactive St. Petersburg Quiz Engine
- * - Dark / Light Theme Switching
- */
+/* ==========================================================================
+   SANKT-PETERSBURG: SOUL OF NEVA - INTERACTIVE GUIDE STYLESHEET
+   Design System: High-End Aesthetics, Glassmorphism, Fluid Typography,
+   Dark & Light Theme Tokens, Smooth Scrolling & Scrollytelling Animations
+   ========================================================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
+/* --------------------------------------------------------------------------
+   1. CSS Custom Properties / Design Tokens
+   -------------------------------------------------------------------------- */
+:root {
+    /* Color Palette - Dark Mode Default (Apple Style) */
+    --bg-primary: #000000;
+    --bg-secondary: #0c0d0e;
+    --bg-tertiary: #16181a;
+    --bg-glass: rgba(22, 24, 26, 0.7);
+    --bg-glass-card: rgba(255, 255, 255, 0.05);
+    --bg-glass-hover: rgba(255, 255, 255, 0.08);
 
-    /* ==========================================================================
-       1. ROUTE DATA (12 STOPS ACCORDING TO TASK SPECIFICATIONS)
-       ========================================================================== */
-    const routeStops = [
-        {
-            id: 1,
-            title: "1. Дворцовая площадь и Государственный Эрмитаж",
-            coords: [59.9398, 30.3146],
-            category: "Музейное наследие",
-            image: "https://images.unsplash.com/photo-1558642084-fd07fae5282e?auto=format&fit=crop&w=1200&q=80",
-            imageCaption: "Дворцовая площадь с Александровской колонной и Зимним дворцом",
-            description: "Главная площадь Санкт-Петербурга и один из самых выдающихся архитектурных ансамблей мира. В центре площади возвышается Александровская колонна (47,5 м), возведенная в честь победы над Наполеоном. Зимний дворец — бывшая резиденция российских императоров, ныне главный музей страны — Государственный Эрмитаж.",
-            significance: "Символ российской государственности и военной славы. Эрмитаж хранит более 3 миллионов произведений искусства, являясь мировым сокровищем."
-        },
-        {
-            id: 2,
-            title: "2. Медный всадник и Сенатская площадь",
-            coords: [59.9364, 30.3022],
-            category: "Памятник & История",
-            image: "https://images.unsplash.com/photo-1513326718677-b964603b136d?auto=format&fit=crop&w=1200&q=80",
-            imageCaption: "Памятник Петру I на Гром-камне",
-            description: "Памятник основателю города Петру I, открытый в 1782 году по проекту французского скульптора Этьена Фальконе. Бронзовая конная статуя покоится на гигантском «Гром-камне» весом более 1500 тонн. Поэма А.С. Пушкина увековечила этот памятник как имя нарицательное.",
-            significance: "Главный градостроительный и поэтический символ Санкт-Петербурга, олицетворяющий стремительный порыв России в будущее."
-        },
-        {
-            id: 3,
-            title: "3. Исаакиевский собор",
-            coords: [59.9341, 30.3061],
-            category: "Архитектура & Религия",
-            image: "https://images.unsplash.com/photo-1548834925-e48f8a27ae6f?auto=format&fit=crop&w=1200&q=80",
-            imageCaption: "Купол Исаакиевского собора над городом",
-            description: "Крупнейший православный храм Санкт-Петербурга, строившийся 40 лет (1818–1858) по проекту Огюста Монферрана. Купол покрыт 100 кг чистого золота. Солончак и мощные 112 монолитных гранитных колонн делают собор одним из величайших купольных зданий мира.",
-            significance: "Главный кафедральный собор Российской империи, шедевр позднего классицизма и уникальный инженерный подвиг XIX века."
-        },
-        {
-            id: 4,
-            title: "4. Невский проспект и Казанский собор",
-            coords: [59.9343, 30.3246],
-            category: "Главная артерия",
-            image: "https://images.unsplash.com/photo-1572985025344-3151834e5659?auto=format&fit=crop&w=1200&q=80",
-            imageCaption: "Казанский собор на Невском проспекте",
-            description: "Казанский собор, возведенный архитектором Андреем Воронихиным в 1801–1811 годах, напоминает Собор Святого Петра в Риме благодаря полукруглой колоннаде из 94 колонн. Здесь похоронен фельдмаршал М.И. Кутузов и хранилась чудотворная Казанская икона Божией Матери.",
-            significance: "Памятник русской военной славы Отечественной войны 1812 года и духовный центр на главной магистрали города."
-        },
-        {
-            id: 5,
-            title: "5. Храм Спаса на Крови",
-            coords: [59.9401, 30.3289],
-            category: "Шедевр мозаики",
-            image: "https://images.unsplash.com/photo-1520106212299-d99c443e4568?auto=format&fit=crop&w=1200&q=80",
-            imageCaption: "Яркие купола Спаса на Крови над каналом Грибоедова",
-            description: "Собор Воскресения Христова сооружен на месте, где 1 марта 1881 года был смертельно ранен император Александр II. Храм выполнен в «русском стиле» по образцу собора Василия Блаженного. Интерьер украшает свыше 7500 кв. метров уникальной мозаики.",
-            significance: "Уникальный мемориальный архитектурный комплекс и одна из крупнейших коллекций монументальной мозаики в Европе."
-        },
-        {
-            id: 6,
-            title: "6. Летний сад и Дворец Петра I",
-            coords: [59.9449, 30.3355],
-            category: "Парковое искусство",
-            image: "https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=1200&q=80",
-            imageCaption: "Аллеи Летнего сада и знаменитая решетка",
-            description: "Старейший парк Санкт-Петербурга, заложенный по повелению Петра I в 1704 году как летняя царская резиденция. Парк известен мраморными итальянскими скульптурами, фонтанами и изящной оградой архитектора Юрия Фельтена.",
-            significance: "Эталон барочного садово-паркового искусства XVIII века и любимое место прогулок Петербургской интеллигенции."
-        },
-        {
-            id: 7,
-            title: "7. Петропавловская крепость и Заячий остров",
-            coords: [59.9502, 30.3164],
-            category: "Колыбель города",
-            image: "https://images.unsplash.com/photo-1561542320-9a18cf340450?auto=format&fit=crop&w=1200&q=80",
-            imageCaption: "Шпиль Петропавловского собора на фоне Невы",
-            description: "Заложена 27 мая 1703 года — именно этот день считается днем рождения Санкт-Петербурга. В центре крепости расположен Петропавловский собор со шпилем высотой 122,5 м, увенчанным фигурой летящего ангела. Собор служит усыпальницей русских царей от Петра I до Николая II.",
-            significance: "Исторический ядро города, фортификационный шедевр и усыпальница Дома Романовых."
-        },
-        {
-            id: 8,
-            title: "8. Стрелка Васильевского острова и Биржа",
-            coords: [59.9436, 30.3060],
-            category: "Ансамбль & Вид",
-            image: "https://images.unsplash.com/photo-1513326718677-b964603b136d?auto=format&fit=crop&w=1200&q=80",
-            imageCaption: "Ростральные колонны и здание Биржи",
-            description: "Градостроительный ансамбль, где река Нева делится на Большую и Малую. Две Ростральные колонны высотой 32 м украшены рострами (носами) захваченных вражеских кораблей и аллегорическими фигурами великих русских рек: Волги, Днепра, Волхова и Невы.",
-            significance: "Символ Санкт-Петербурга как морского порта и торговой столицы Российской империи."
-        },
-        {
-            id: 9,
-            title: "9. Кунсткамера и Здание 12 коллегий",
-            coords: [59.9414, 30.3045],
-            category: "Наука & Образование",
-            image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=1200&q=80",
-            imageCaption: "Здание Кунсткамеры — Музея антропологии и этнографии",
-            description: "Первый музей России, основанный Петром I в 1714 году для сбора и исследования анатомических редкостей и этнографических предметов. Рядом расположено здание Двенадцати коллегий — ныне главный корпус Санкт-Петербургского государственного университета (СПбГУ).",
-            significance: "Родоначальник всей российской музейной науки и Академии наук."
-        },
-        {
-            id: 10,
-            title: "10. Крейсер «Аврора»",
-            coords: [59.9554, 30.3378],
-            category: "Морская история",
-            image: "https://images.unsplash.com/photo-1548834925-e48f8a27ae6f?auto=format&fit=crop&w=1200&q=80",
-            imageCaption: "Легендарный крейсер 1-го ранга «Аврора» у Петроградской набережной",
-            description: "Крейсер 1-го ранга Балтийского флота, принявший участие в Русско-японской и Первой мировой войнах. Холостой выстрел с «Авроры» 25 октября 1917 года послужил сигналом к штурму Зимнего дворца и началу Октябрьской революции.",
-            significance: "Корабль-музей, поворотный символ отечественной и мировой истории XX века."
-        },
-        {
-            id: 11,
-            title: "11. Мариинский театр и Театральная площадь",
-            coords: [59.9257, 30.2961],
-            category: "Опера & Балет",
-            image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80",
-            imageCaption: "Здание Мариинского театра",
-            description: "Один из ведущих музыкальных театров мира, открытый в 1860 году. Здесь состоялись премьеры опер Мусоргского, Чайковского, Римского-Корсакова и балетов Петипа. Театр подарил миру величайших артистов от Шаляпина до Улановой и Плисецкой.",
-            significance: "Храм русского балета и оперного искусства, задающий мировые стандарты исполнительства."
-        },
-        {
-            id: 12,
-            title: "12. Никольский Морской собор и Новая Голландия",
-            coords: [59.9224, 30.2997],
-            category: "Душа Коломны",
-            image: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=80",
-            imageCaption: "Никольский собор и рукотворный остров Новая Голландия",
-            description: "Николо-Богоявленский Морской собор — выдающийся памятник елизаветинского барокко, традиционно окормляющий моряков Российского флота. Неподалеку расположен остров Новая Голландия — уникальный памятник промышленной архитектуры XVIII века, превращенный в современное культурное пространство.",
-            significance: "Сердце исторического района Коломна, объединяющее духовную веру моряков и современную креативную жизнь города."
-        }
-    ];
+    --text-primary: #f5f5f7;
+    --text-secondary: #86868b;
+    --text-tertiary: #6e6e73;
 
-    /* ==========================================================================
-       2. LEAFLET INTERACTIVE MAP IMPLEMENTATION
-       ========================================================================== */
-    let map;
-    let markers = [];
-    let routePolyline;
-    let currentStopIndex = 0;
+    --accent-blue: #2997ff;
+    --accent-blue-hover: #0077ed;
+    --accent-cyan: #64d2ff;
+    --accent-gold: #ffd60a;
+    --accent-purple: #bf5af2;
+    --accent-red: #ff453a;
+    --accent-green: #30d158;
 
-    function initMap() {
-        const mapContainer = document.getElementById('leafletMap');
-        if (!mapContainer) return;
+    --border-subtle: rgba(255, 255, 255, 0.12);
+    --border-glow: rgba(41, 151, 255, 0.3);
 
-        const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    /* Typography */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+    --font-serif: 'Playfair Display', Georgia, serif;
 
-        // Centered over St. Petersburg with touch optimization
-        map = L.map('leafletMap', {
-            center: [59.9386, 30.3141],
-            zoom: 13,
-            scrollWheelZoom: false,
-            dragging: !isTouchDevice || window.innerWidth > 768,
-            tap: !isTouchDevice
-        });
+    /* Transitions & Easing */
+    --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-medium: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 
-        if (isTouchDevice && window.innerWidth <= 768) {
-            // Enable dragging on map when user taps map container
-            mapContainer.addEventListener('touchstart', () => {
-                map.dragging.enable();
-            });
-        }
+    /* Layout & Spacing */
+    --max-width: 1280px;
+    --navbar-height: 52px;
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
 
-        // Standard OpenStreetMap Tiles (Free, No API Key Required)
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-            maxZoom: 19
-        }).addTo(map);
+    /* Shadows & Effects */
+    --shadow-glass: 0 20px 40px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 30px rgba(41, 151, 255, 0.2);
+    --backdrop-blur: blur(20px) saturate(180%);
+}
 
-        const latLngs = routeStops.map(stop => stop.coords);
+/* Light Mode Overrides */
+html.light {
+    --bg-primary: #f5f5f7;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #e8e8ed;
+    --bg-glass: rgba(255, 255, 255, 0.75);
+    --bg-glass-card: rgba(255, 255, 255, 0.8);
+    --bg-glass-hover: rgba(255, 255, 255, 0.95);
 
-        // Draw connecting route polyline
-        routePolyline = L.polyline(latLngs, {
-            color: '#2997ff',
-            weight: 4,
-            opacity: 0.8,
-            dashArray: '8, 8',
-            lineJoin: 'round'
-        }).addTo(map);
+    --text-primary: #1d1d1f;
+    --text-secondary: #6e6e73;
+    --text-tertiary: #86868b;
 
-        // Add custom markers for each stop
-        routeStops.forEach((stop, index) => {
-            const customIcon = L.divIcon({
-                className: 'custom-leaflet-pin-wrapper',
-                html: `<div class="custom-leaflet-pin ${index === 0 ? 'active-pin' : ''}" id="pin-${stop.id}">${stop.id}</div>`,
-                iconSize: [32, 32],
-                iconAnchor: [16, 16]
-            });
+    --accent-blue: #0066cc;
+    --accent-blue-hover: #004499;
+    --accent-cyan: #0071e3;
 
-            const marker = L.marker(stop.coords, { icon: customIcon }).addTo(map);
-            marker.on('click', () => {
-                selectStop(index);
-            });
+    --border-subtle: rgba(0, 0, 0, 0.08);
+    --border-glow: rgba(0, 102, 204, 0.2);
+    --shadow-glass: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
 
-            markers.push(marker);
-        });
+/* --------------------------------------------------------------------------
+   2. Reset & Universal Styles
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        renderStopsSidebar();
-        selectStop(0);
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.5;
+    position: relative;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+button {
+    font-family: inherit;
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* Scroll Progress Bar */
+.scroll-progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: transparent;
+    z-index: 1000;
+}
+
+.scroll-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan), var(--accent-purple));
+    box-shadow: 0 0 10px var(--accent-blue);
+    transition: width 0.1s linear;
+}
+
+/* --------------------------------------------------------------------------
+   3. Navigation Bar (Apple Glass Style)
+   -------------------------------------------------------------------------- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--navbar-height);
+    background: var(--bg-glass);
+    backdrop-filter: var(--backdrop-blur);
+    -webkit-backdrop-filter: var(--backdrop-blur);
+    border-bottom: 1px solid var(--border-subtle);
+    z-index: 900;
+    transition: all var(--transition-medium);
+}
+
+.nav-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+}
+
+.nav-logo .logo-icon {
+    color: var(--accent-blue);
+    font-size: 1.2rem;
+}
+
+.nav-logo .accent-text {
+    color: var(--accent-blue);
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+}
+
+.nav-link {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast), opacity var(--transition-fast);
+    opacity: 0.88;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--text-primary);
+    opacity: 1;
+}
+
+.nav-link.highlight-link {
+    color: var(--accent-blue);
+    font-weight: 600;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ambient-sound-btn, .theme-toggle-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg-glass-card);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+}
+
+.ambient-sound-btn:hover, .theme-toggle-btn:hover {
+    background: var(--bg-glass-hover);
+    border-color: var(--accent-blue);
+    transform: scale(1.05);
+}
+
+.ambient-sound-btn.playing {
+    color: var(--accent-blue);
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 12px rgba(41, 151, 255, 0.4);
+}
+
+.sound-wave {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 12px;
+    margin-left: 4px;
+}
+
+.sound-wave span {
+    width: 2px;
+    background: var(--accent-blue);
+    height: 3px;
+    border-radius: 1px;
+}
+
+.ambient-sound-btn.playing .sound-wave span:nth-child(1) { animation: wave 0.8s infinite ease-in-out; }
+.ambient-sound-btn.playing .sound-wave span:nth-child(2) { animation: wave 0.8s infinite ease-in-out 0.2s; }
+.ambient-sound-btn.playing .sound-wave span:nth-child(3) { animation: wave 0.8s infinite ease-in-out 0.4s; }
+
+@keyframes wave {
+    0%, 100% { height: 3px; }
+    50% { height: 12px; }
+}
+
+.mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    width: 24px;
+}
+
+.mobile-menu-btn span {
+    width: 100%;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transition: var(--transition-fast);
+}
+
+/* --------------------------------------------------------------------------
+   4. Hero Section (Apple Cinema Scrollytelling)
+   -------------------------------------------------------------------------- */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 1.5rem 3rem;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 30%, rgba(41, 151, 255, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at 80% 80%, rgba(191, 90, 242, 0.1) 0%, transparent 50%),
+                var(--bg-primary);
+}
+
+.hero-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.badge-tag.Apple-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1.1rem;
+    border-radius: 30px;
+    background: var(--bg-glass-card);
+    border: 1px solid var(--border-subtle);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent-blue);
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.hero-title {
+    font-size: clamp(3.2rem, 8vw, 6.2rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    background: linear-gradient(180deg, #ffffff 30%, rgba(255, 255, 255, 0.6) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.2rem;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+html.light .hero-title {
+    background: linear-gradient(180deg, #000000 30%, #434343 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+    color: var(--text-secondary);
+    font-weight: 300;
+    max-width: 680px;
+    margin-bottom: 3rem;
+    line-height: 1.4;
+}
+
+.hero-stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+.hero-stat-card {
+    background: var(--bg-glass-card);
+    border: 1px solid var(--border-subtle);
+    padding: 1.2rem;
+    border-radius: var(--radius-md);
+    backdrop-filter: var(--backdrop-blur);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform var(--transition-medium), border-color var(--transition-medium);
+}
+
+.hero-stat-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-glow);
+}
+
+.stat-number {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.2rem;
+}
+
+.hero-cta-group {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+/* Apple Buttons */
+.apple-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.8rem;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all var(--transition-medium);
+}
+
+.apple-btn.primary-btn {
+    background: var(--accent-blue);
+    color: #ffffff;
+    box-shadow: 0 4px 20px rgba(41, 151, 255, 0.3);
+}
+
+.apple-btn.primary-btn:hover {
+    background: var(--accent-blue-hover);
+    transform: scale(1.03);
+    box-shadow: 0 6px 25px rgba(41, 151, 255, 0.5);
+}
+
+.apple-btn.secondary-btn {
+    background: var(--bg-glass-card);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    backdrop-filter: blur(10px);
+}
+
+.apple-btn.secondary-btn:hover {
+    background: var(--bg-glass-hover);
+    border-color: var(--text-primary);
+    transform: scale(1.03);
+}
+
+.hero-scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 2;
+    opacity: 0.7;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+.hero-scroll-indicator .mouse {
+    width: 22px;
+    height: 36px;
+    border: 2px solid var(--text-secondary);
+    border-radius: 12px;
+    position: relative;
+}
+
+.hero-scroll-indicator .wheel {
+    width: 4px;
+    height: 7px;
+    background: var(--accent-blue);
+    border-radius: 2px;
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scrollWheel 1.5s infinite ease-in-out;
+}
+
+.scroll-text {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+@keyframes scrollWheel {
+    0% { opacity: 1; top: 6px; }
+    100% { opacity: 0; top: 20px; }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+}
+
+/* Ambient Audio Player Bar Floating */
+.ambient-player-bar {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: var(--bg-glass);
+    backdrop-filter: var(--backdrop-blur);
+    border: 1px solid var(--border-subtle);
+    border-radius: 30px;
+    padding: 0.6rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    z-index: 800;
+    box-shadow: var(--shadow-glass);
+    transition: all var(--transition-medium);
+}
+
+.ambient-player-bar.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+}
+
+.ambient-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+}
+
+.ambient-info i {
+    color: var(--accent-blue);
+}
+
+.ambient-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.ambient-controls button {
+    padding: 0.35rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    background: var(--bg-glass-card);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    transition: var(--transition-fast);
+}
+
+.ambient-controls button:hover {
+    background: var(--accent-blue);
+    color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   5. Content Layout & Glass Cards
+   -------------------------------------------------------------------------- */
+.main-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8rem;
+}
+
+.content-section {
+    position: relative;
+}
+
+.section-header {
+    margin-bottom: 3.5rem;
+    text-align: left;
+}
+
+.section-subtitle {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.section-title {
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 0.8rem;
+}
+
+.section-desc {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+    max-width: 700px;
+}
+
+.section-line {
+    width: 60px;
+    height: 3px;
+    background: var(--accent-blue);
+    border-radius: 2px;
+    margin-top: 1.2rem;
+}
+
+/* Glassmorphism Card System */
+.glass-card {
+    background: var(--bg-glass-card);
+    border: 1px solid var(--border-subtle);
+    backdrop-filter: var(--backdrop-blur);
+    border-radius: var(--radius-lg);
+    padding: 2.2rem;
+    transition: all var(--transition-medium);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.glass-card:hover {
+    border-color: var(--border-glow);
+    background: var(--bg-glass-hover);
+    box-shadow: var(--shadow-glass);
+}
+
+.apple-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.apple-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.card-icon {
+    font-size: 2rem;
+    color: var(--accent-blue);
+    margin-bottom: 1.2rem;
+}
+
+.glass-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    letter-spacing: -0.02em;
+}
+
+.text-description {
+    color: var(--text-secondary);
+    font-size: 0.98rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.pill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.pill {
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+}
+
+/* Feature Apple Card (Big Image + Content) */
+.apple-card-feature {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    background: var(--bg-glass-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: 3rem;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.feature-tag {
+    font-size: 0.8rem;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+}
+
+.feature-content h3 {
+    font-size: 2.2rem;
+    margin: 0.5rem 0 1rem;
+    line-height: 1.2;
+}
+
+.feature-content p {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+}
+
+.stats-mini-flex {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.stats-mini-flex strong {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.stats-mini-flex span {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+}
+
+.feature-image-placeholder.photo-card-1 {
+    height: 320px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, rgba(41, 151, 255, 0.4), rgba(191, 90, 242, 0.3)),
+                url('https://images.unsplash.com/photo-1513326718677-b964603b136d?auto=format&fit=crop&w=1000&q=80') center/cover;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+.glass-badge {
+    position: absolute;
+    bottom: 1.2rem;
+    left: 1.2rem;
+    padding: 0.4rem 1rem;
+    background: var(--bg-glass);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid var(--border-subtle);
+}
+
+/* Climate Chart Full Width Widget */
+.full-width-card {
+    grid-column: 1 / -1;
+}
+
+.card-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.card-header-flex .subtext {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+}
+
+.chart-controls {
+    display: flex;
+    gap: 0.5rem;
+    background: var(--bg-tertiary);
+    padding: 0.3rem;
+    border-radius: 20px;
+}
+
+.chart-btn {
+    padding: 0.4rem 1rem;
+    border-radius: 16px;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+}
+
+.chart-btn.active {
+    background: var(--accent-blue);
+    color: #fff;
+}
+
+.chart-wrapper {
+    position: relative;
+    height: 320px;
+    width: 100%;
+}
+
+/* Feature Icons Grid */
+.icon-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+}
+
+.color-blue { background: rgba(41, 151, 255, 0.15); color: var(--accent-blue); }
+.color-purple { background: rgba(191, 90, 242, 0.15); color: var(--accent-purple); }
+.color-gold { background: rgba(255, 214, 10, 0.15); color: var(--accent-gold); }
+
+/* Filter Tabs */
+.filter-container {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+}
+
+.filter-btn {
+    padding: 0.6rem 1.3rem;
+    border-radius: 30px;
+    background: var(--bg-glass-card);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: all var(--transition-fast);
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    border-color: var(--text-primary);
+}
+
+/* People Grid */
+.people-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.person-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.person-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-bottom: 1.2rem;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid var(--accent-blue);
+}
+
+.avatar-pushkin { background-image: url('https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=300&q=80'); }
+.avatar-dostoevsky { background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80'); }
+.avatar-mendeleev { background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80'); }
+.avatar-tchaikovsky { background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80'); }
+.avatar-peter { background-image: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80'); }
+.avatar-pavlova { background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80'); }
+
+.person-card h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.person-role {
+    font-size: 0.82rem;
+    color: var(--accent-blue);
+    margin-bottom: 0.8rem;
+}
+
+.person-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   6. Section 5: Tourist Route & Interactive Leaflet Map
+   -------------------------------------------------------------------------- */
+.route-section-wrapper {
+    background: radial-gradient(circle at 50% 0%, rgba(41, 151, 255, 0.08) 0%, transparent 70%);
+    padding-top: 2rem;
+}
+
+.route-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1.1rem;
+    border-radius: 20px;
+    background: rgba(41, 151, 255, 0.15);
+    color: var(--accent-blue);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+.map-section-card {
+    padding: 0;
+    overflow: hidden;
+    margin-bottom: 3rem;
+}
+
+.map-controls-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: var(--bg-tertiary);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.map-title-info {
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-primary);
+}
+
+.map-actions {
+    display: flex;
+    gap: 0.6rem;
+}
+
+.map-btn {
+    padding: 0.4rem 0.9rem;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    background: var(--bg-glass-card);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    transition: var(--transition-fast);
+}
+
+.map-btn:hover {
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: #fff;
+}
+
+.leaflet-map-container {
+    height: 480px;
+    width: 100%;
+    z-index: 10;
+}
+
+/* Route Stops List + Detail Area */
+.stops-wrapper {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.stops-sidebar {
+    background: var(--bg-glass-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    max-height: 650px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stops-list-nav {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding-right: 0.3rem;
+}
+
+.stops-list-nav::-webkit-scrollbar {
+    width: 4px;
+}
+
+.stops-list-nav::-webkit-scrollbar-thumb {
+    background: var(--border-subtle);
+    border-radius: 2px;
+}
+
+.stop-nav-item {
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius-md);
+    background: transparent;
+    border: 1px solid transparent;
+    text-align: left;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.stop-nav-item:hover {
+    background: var(--bg-glass-hover);
+}
+
+.stop-nav-item.active {
+    background: rgba(41, 151, 255, 0.15);
+    border-color: var(--accent-blue);
+}
+
+.stop-badge-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.stop-nav-item.active .stop-badge-num {
+    background: var(--accent-blue);
+    color: #fff;
+}
+
+.stop-nav-info strong {
+    display: block;
+    font-size: 0.88rem;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+.stop-nav-info span {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* Stop Detail Display Card */
+.stop-detail-display {
+    min-height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stop-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.stop-number-badge {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--accent-blue);
+    letter-spacing: 0.05em;
+}
+
+.audio-guide-btn {
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    background: rgba(41, 151, 255, 0.15);
+    border: 1px solid var(--accent-blue);
+    color: var(--accent-blue);
+    font-size: 0.82rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition-fast);
+}
+
+.audio-guide-btn:hover {
+    background: var(--accent-blue);
+    color: #fff;
+}
+
+.stop-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.25;
+}
+
+.stop-meta {
+    display: flex;
+    gap: 1.2rem;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.stop-image-box {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.stop-image-box img {
+    width: 100%;
+    height: 100%;
+    transition: transform var(--transition-slow);
+}
+
+.stop-image-box:hover img {
+    transform: scale(1.04);
+}
+
+.image-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.6rem 1rem;
+    background: linear-gradient(0deg, rgba(0,0,0,0.8), transparent);
+    color: rgba(255,255,255,0.85);
+    font-size: 0.8rem;
+}
+
+.stop-body-text h4 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-primary);
+}
+
+.stop-body-text p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+}
+
+.significance-box {
+    background: rgba(41, 151, 255, 0.06);
+    border-left: 3px solid var(--accent-blue);
+    padding: 1rem;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin-bottom: 1.5rem;
+}
+
+.significance-box h4 {
+    color: var(--accent-blue);
+    font-size: 0.92rem;
+}
+
+.significance-box p {
+    margin-bottom: 0;
+    font-size: 0.88rem;
+}
+
+.stop-navigation-footer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.nav-stop-btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    background: var(--bg-glass-card);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition-fast);
+}
+
+.nav-stop-btn:hover {
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   7. Interactive Quiz Section
+   -------------------------------------------------------------------------- */
+.quiz-card {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.quiz-progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.quiz-bar {
+    width: 60%;
+    height: 6px;
+    background: var(--bg-tertiary);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+#quizBarInner {
+    height: 100%;
+    background: var(--accent-blue);
+    transition: width 0.3s ease;
+}
+
+.quiz-question-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    line-height: 1.35;
+}
+
+.quiz-options-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.quiz-option-btn {
+    padding: 1rem 1.2rem;
+    border-radius: var(--radius-md);
+    background: var(--bg-glass-card);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    text-align: left;
+    transition: all var(--transition-fast);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quiz-option-btn:hover {
+    background: var(--bg-glass-hover);
+    border-color: var(--accent-blue);
+}
+
+.quiz-option-btn.correct {
+    background: rgba(48, 209, 88, 0.2) !important;
+    border-color: var(--accent-green) !important;
+    color: #fff;
+}
+
+.quiz-option-btn.wrong {
+    background: rgba(255, 69, 58, 0.2) !important;
+    border-color: var(--accent-red) !important;
+    color: #fff;
+}
+
+.quiz-feedback {
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.quiz-feedback.correct-bg {
+    background: rgba(48, 209, 88, 0.15);
+    border: 1px solid var(--accent-green);
+    color: var(--accent-green);
+}
+
+.quiz-feedback.wrong-bg {
+    background: rgba(255, 69, 58, 0.15);
+    border: 1px solid var(--accent-red);
+    color: var(--accent-red);
+}
+
+.result-icon {
+    font-size: 3.5rem;
+    color: var(--accent-gold);
+    margin-bottom: 1rem;
+}
+
+.result-score {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0.8rem 0;
+    color: var(--accent-blue);
+}
+
+.text-center { text-align: center; }
+
+/* --------------------------------------------------------------------------
+   8. Resources & Footer
+   -------------------------------------------------------------------------- */
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.resource-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+}
+
+.resource-card i {
+    font-size: 1.6rem;
+    color: var(--accent-blue);
+}
+
+.resource-card h4 {
+    font-size: 1.05rem;
+    margin-bottom: 0.3rem;
+}
+
+.resource-card p {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+}
+
+.resource-card .arrow {
+    margin-left: auto;
+    font-size: 0.9rem;
+    color: var(--text-tertiary);
+    transition: transform var(--transition-fast);
+}
+
+.resource-card:hover .arrow {
+    transform: translate(3px, -3px);
+    color: var(--accent-blue);
+}
+
+/* Footer */
+.footer {
+    border-top: 1px solid var(--border-subtle);
+    background: var(--bg-secondary);
+    padding: 4rem 1.5rem 2rem;
+    margin-top: 6rem;
+}
+
+.footer-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.footer-logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent-blue);
+}
+
+.footer-brand p {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    max-width: 400px;
+}
+
+.footer-links h4 {
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+    color: var(--text-primary);
+}
+
+.footer-links ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.footer-links a {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.footer-links a:hover {
+    color: var(--accent-blue);
+}
+
+.footer-copy {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+}
+
+/* --------------------------------------------------------------------------
+   9. Utilities & Animations
+   -------------------------------------------------------------------------- */
+.hidden { display: none !important; }
+
+/* GSAP Reveal Helper Classes */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s var(--ease-apple), transform 0.8s var(--ease-apple);
+}
+
+[data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Leaflet Custom Marker Styling */
+.custom-leaflet-pin {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent-blue);
+    border: 3px solid #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    color: #fff;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: transform 0.2s ease;
+}
+
+.custom-leaflet-pin:hover, .custom-leaflet-pin.active-pin {
+    transform: scale(1.25);
+    background: var(--accent-gold);
+    border-color: #000;
+    z-index: 1000 !important;
+}
+
+/* --------------------------------------------------------------------------
+   10. Responsive Design Media Queries & Touch Adaptations
+   -------------------------------------------------------------------------- */
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+@media (max-width: 1024px) {
+    .main-container {
+        padding: 2.5rem 1.2rem;
+        gap: 5rem;
     }
 
-    function renderStopsSidebar() {
-        const sidebarNav = document.getElementById('stopsListNav');
-        if (!sidebarNav) return;
-
-        sidebarNav.innerHTML = '';
-        routeStops.forEach((stop, idx) => {
-            const btn = document.createElement('button');
-            btn.className = `stop-nav-item ${idx === 0 ? 'active' : ''}`;
-            btn.innerHTML = `
-                <div class="stop-badge-num">${stop.id}</div>
-                <div class="stop-nav-info">
-                    <strong>${stop.title.replace(/^\d+\.\s*/, '')}</strong>
-                    <span>${stop.category}</span>
-                </div>
-            `;
-            btn.addEventListener('click', () => selectStop(idx));
-            sidebarNav.appendChild(btn);
-        });
+    .apple-grid-3, .people-grid, .resources-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    function selectStop(index) {
-        currentStopIndex = index;
-        const stop = routeStops[index];
-
-        // Update map active marker & pan smoothly
-        markers.forEach((m, idx) => {
-            const el = document.getElementById(`pin-${routeStops[idx].id}`);
-            if (el) {
-                if (idx === index) el.classList.add('active-pin');
-                else el.classList.remove('active-pin');
-            }
-        });
-
-        map.flyTo(stop.coords, 15, { duration: 1.2 });
-
-        // Update Sidebar Active state
-        const sidebarItems = document.querySelectorAll('.stop-nav-item');
-        sidebarItems.forEach((item, idx) => {
-            if (idx === index) item.classList.add('active');
-            else item.classList.remove('active');
-        });
-
-        // Update Stop Detail Display Card with smooth transition
-        const stopDetailCard = document.getElementById('stopDetailCard');
-        if (stopDetailCard) {
-            stopDetailCard.style.opacity = '0.4';
-            setTimeout(() => {
-                document.getElementById('stopNumber').textContent = `Остановка ${stop.id < 10 ? '0' + stop.id : stop.id} из ${routeStops.length}`;
-                document.getElementById('stopTitle').textContent = stop.title;
-                document.getElementById('stopCoords').innerHTML = `<i class="fa-solid fa-location-pin"></i> ${stop.coords[0]}° N, ${stop.coords[1]}° E`;
-                document.getElementById('stopCategory').innerHTML = `<i class="fa-solid fa-tag"></i> ${stop.category}`;
-                document.getElementById('stopImage').src = stop.image;
-                document.getElementById('stopImageCaption').textContent = stop.imageCaption;
-                document.getElementById('stopDescription').textContent = stop.description;
-                document.getElementById('stopSignificance').textContent = stop.significance;
-
-                stopDetailCard.style.opacity = '1';
-            }, 180);
-        }
+    .stops-wrapper {
+        grid-template-columns: 1fr;
     }
 
-    // Map Action Buttons
-    const btnResetMapView = document.getElementById('btnResetMapView');
-    if (btnResetMapView) {
-        btnResetMapView.addEventListener('click', () => {
-            if (map && routePolyline) {
-                map.fitBounds(routePolyline.getBounds(), { padding: [40, 40] });
-            }
-        });
+    .stops-sidebar {
+        max-height: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        padding: 2rem 1rem;
+        gap: 4rem;
+        width: 100%;
+        box-sizing: border-box;
     }
 
-    const btnToggleRouteLine = document.getElementById('btnToggleRouteLine');
-    if (btnToggleRouteLine) {
-        btnToggleRouteLine.addEventListener('click', () => {
-            if (routePolyline) {
-                if (map.hasLayer(routePolyline)) map.removeLayer(routePolyline);
-                else routePolyline.addTo(map);
-            }
-        });
+    .hero-title {
+        font-size: clamp(2.4rem, 10vw, 3.8rem);
     }
 
-    // Stop Navigation Buttons
-    const prevStopBtn = document.getElementById('prevStopBtn');
-    const nextStopBtn = document.getElementById('nextStopBtn');
-
-    if (prevStopBtn) {
-        prevStopBtn.addEventListener('click', () => {
-            const newIndex = (currentStopIndex - 1 + routeStops.length) % routeStops.length;
-            selectStop(newIndex);
-        });
+    .hero-subtitle {
+        font-size: 1.1rem;
     }
 
-    if (nextStopBtn) {
-        nextStopBtn.addEventListener('click', () => {
-            const newIndex = (currentStopIndex + 1) % routeStops.length;
-            selectStop(newIndex);
-        });
+    .apple-grid-2, .apple-grid-3, .people-grid, .resources-grid, .hero-stats-row {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
     }
 
-    /* ==========================================================================
-       3. TEXT-TO-SPEECH AUDIO GUIDE
-       ========================================================================== */
-    const audioGuideBtn = document.getElementById('audioGuideBtn');
-    let isSpeaking = false;
-
-    if (audioGuideBtn) {
-        audioGuideBtn.addEventListener('click', () => {
-            if ('speechSynthesis' in window) {
-                if (isSpeaking) {
-                    window.speechSynthesis.cancel();
-                    isSpeaking = false;
-                    audioGuideBtn.innerHTML = `<i class="fa-solid fa-volume-high"></i> <span>Аудиогид (Озвучить)</span>`;
-                    return;
-                }
-
-                const stop = routeStops[currentStopIndex];
-                const textToSpeak = `${stop.title}. ${stop.description} Значение объекта: ${stop.significance}`;
-
-                const utterance = new SpeechSynthesisUtterance(textToSpeak);
-                utterance.lang = 'ru-RU';
-                utterance.rate = 0.95;
-
-                utterance.onend = () => {
-                    isSpeaking = false;
-                    audioGuideBtn.innerHTML = `<i class="fa-solid fa-volume-high"></i> <span>Аудиогид (Озвучить)</span>`;
-                };
-
-                window.speechSynthesis.speak(utterance);
-                isSpeaking = true;
-                audioGuideBtn.innerHTML = `<i class="fa-solid fa-stop"></i> <span>Остановить аудио</span>`;
-            } else {
-                alert('Ваш браузер не поддерживает встроенный синтез речи.');
-            }
-        });
+    .glass-card {
+        padding: 1.5rem;
+        border-radius: var(--radius-md);
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
-    /* ==========================================================================
-       4. AMBIENT WATER & RAIN SOUND SYNTHESIZER (WEB AUDIO API)
-       ========================================================================== */
-    let audioCtx;
-    let noiseNode;
-    let isAmbientPlaying = false;
-
-    function createAmbientSound(type) {
-        if (!audioCtx) {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-
-        if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
-        }
-
-        // Generate Pink / Brown Noise for rain or river waves
-        const bufferSize = audioCtx.sampleRate * 2;
-        const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-        const output = noiseBuffer.getChannelData(0);
-
-        let lastOut = 0.0;
-        for (let i = 0; i < bufferSize; i++) {
-            const white = Math.random() * 2 - 1;
-            output[i] = (lastOut + (0.02 * white)) / 1.02;
-            lastOut = output[i];
-            output[i] *= 3.5; // Gain boost
-        }
-
-        noiseNode = audioCtx.createBufferSource();
-        noiseNode.buffer = noiseBuffer;
-        noiseNode.loop = true;
-
-        const filter = audioCtx.createBiquadFilter();
-        filter.type = type === 'rain' ? 'lowpass' : 'bandpass';
-        filter.frequency.value = type === 'rain' ? 800 : 400;
-
-        const gainNode = audioCtx.createGain();
-        gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
-
-        noiseNode.connect(filter);
-        filter.connect(gainNode);
-        gainNode.connect(audioCtx.destination);
-
-        noiseNode.start();
-        isAmbientPlaying = true;
+    .apple-card-feature {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+        border-radius: var(--radius-lg);
     }
 
-    function stopAmbientSound() {
-        if (noiseNode) {
-            noiseNode.stop();
-            noiseNode.disconnect();
-            noiseNode = null;
-        }
-        isAmbientPlaying = false;
+    .leaflet-map-container {
+        height: 360px;
     }
 
-    const ambientToggle = document.getElementById('ambientToggle');
-    const ambientPlayerBar = document.getElementById('ambientPlayerBar');
-
-    if (ambientToggle) {
-        ambientToggle.addEventListener('click', () => {
-            ambientPlayerBar.classList.toggle('hidden');
-            ambientToggle.classList.toggle('playing');
-        });
+    .stop-image-box {
+        height: 200px;
     }
 
-    const playRainBtn = document.getElementById('playRainBtn');
-    const playWavesBtn = document.getElementById('playWavesBtn');
-    const stopAmbientBtn = document.getElementById('stopAmbientBtn');
-
-    if (playRainBtn) playRainBtn.addEventListener('click', () => { stopAmbientSound(); createAmbientSound('rain'); });
-    if (playWavesBtn) playWavesBtn.addEventListener('click', () => { stopAmbientSound(); createAmbientSound('waves'); });
-    if (stopAmbientBtn) stopAmbientBtn.addEventListener('click', () => stopAmbientSound());
-
-    /* ==========================================================================
-       5. CHART.JS CLIMATE PROFILE WIDGET
-       ========================================================================== */
-    const ctxChart = document.getElementById('climateChart');
-    let climateChart;
-
-    if (ctxChart) {
-        const months = ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'];
-        const tempData = [-5.8, -5.3, -1.1, 5.4, 12.0, 16.3, 19.1, 17.3, 12.1, 6.2, 0.7, -3.6];
-        const rainData = [46, 36, 36, 38, 46, 71, 79, 84, 64, 67, 57, 51];
-
-        climateChart = new Chart(ctxChart, {
-            type: 'line',
-            data: {
-                labels: months,
-                datasets: [{
-                    label: 'Средняя температура (°C)',
-                    data: tempData,
-                    borderColor: '#2997ff',
-                    backgroundColor: 'rgba(41, 151, 255, 0.15)',
-                    fill: true,
-                    tension: 0.4,
-                    pointRadius: 5,
-                    pointBackgroundColor: '#2997ff'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false }
-                },
-                scales: {
-                    x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#86868b' } },
-                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#86868b' } }
-                }
-            }
-        });
-
-        const btnTempChart = document.getElementById('btnTempChart');
-        const btnRainChart = document.getElementById('btnRainChart');
-
-        if (btnTempChart && btnRainChart) {
-            btnTempChart.addEventListener('click', () => {
-                btnTempChart.classList.add('active');
-                btnRainChart.classList.remove('active');
-                climateChart.data.datasets[0].label = 'Средняя температура (°C)';
-                climateChart.data.datasets[0].data = tempData;
-                climateChart.data.datasets[0].borderColor = '#2997ff';
-                climateChart.data.datasets[0].backgroundColor = 'rgba(41, 151, 255, 0.15)';
-                climateChart.update();
-            });
-
-            btnRainChart.addEventListener('click', () => {
-                btnRainChart.classList.add('active');
-                btnTempChart.classList.remove('active');
-                climateChart.data.datasets[0].label = 'Норма осадков (мм)';
-                climateChart.data.datasets[0].data = rainData;
-                climateChart.data.datasets[0].borderColor = '#64d2ff';
-                climateChart.data.datasets[0].backgroundColor = 'rgba(100, 210, 255, 0.15)';
-                climateChart.update();
-            });
-        }
+    .nav-menu {
+        display: none;
     }
 
-    /* ==========================================================================
-       6. FAMOUS PEOPLE FILTER SYSTEM
-       ========================================================================== */
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const personCards = document.querySelectorAll('.person-card');
-
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            const filterValue = btn.getAttribute('data-filter');
-
-            personCards.forEach(card => {
-                if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    });
-
-    /* ==========================================================================
-       7. INTERACTIVE QUIZ ENGINE
-       ========================================================================== */
-    const quizQuestions = [
-        {
-            q: "В каком году Петром I был основан Санкт-Петербург?",
-            options: ["1698 г.", "1703 г.", "1712 г.", "1721 г."],
-            correct: 1,
-            exp: "Правильно! Санкт-Петербург основан 27 мая (16 мая по ст. ст.) 1703 года."
-        },
-        {
-            q: "Сколько колонн формируют полукруглую колоннаду Казанского собора?",
-            options: ["48", "72", "94", "112"],
-            correct: 2,
-            exp: "Верно! Полукруглую колоннаду Казанского собора образуют 94 колонны."
-        },
-        {
-            q: "Какое уникальное природное явление наблюдается в СПб с конца мая по середину июля?",
-            options: ["Северное сияние", "Белые ночи", "Невский прилив", "Звёздный шторм"],
-            correct: 1,
-            exp: "Правильно! Это Белые ночи, когда вечерние сумерки сменяются утренними."
-        },
-        {
-            q: "Как называется остров, на котором расположена Петропавловская крепость?",
-            options: ["Васильевский", "Заячий", "Крестовский", "Аптекарский"],
-            correct: 1,
-            exp: "Точно! Петропавловская крепость расположена на Заячьем острове."
-        },
-        {
-            q: "Какой архитектор проектировал Исаакиевский собор?",
-            options: ["Карло Росси", "Огюст Монферран", "Франческо Растрелли", "Андрей Воронихин"],
-            correct: 1,
-            exp: "Верно! Французский архитектор Огюст Монферран отдало строительству собора 40 лет жизни."
-        }
-    ];
-
-    let currentQuizIndex = 0;
-    let quizScore = 0;
-
-    const quizQuestionEl = document.getElementById('quizQuestion');
-    const quizOptionsEl = document.getElementById('quizOptions');
-    const quizFeedbackEl = document.getElementById('quizFeedback');
-    const nextQuestionBtn = document.getElementById('nextQuestionBtn');
-    const quizQuestionCount = document.getElementById('quizQuestionCount');
-    const quizBarInner = document.getElementById('quizBarInner');
-
-    function loadQuizQuestion() {
-        if (!quizQuestionEl) return;
-
-        const q = quizQuestions[currentQuizIndex];
-        quizQuestionCount.textContent = `Вопрос ${currentQuizIndex + 1} из ${quizQuestions.length}`;
-        quizBarInner.style.width = `${((currentQuizIndex + 1) / quizQuestions.length) * 100}%`;
-        quizQuestionEl.textContent = q.q;
-
-        quizOptionsEl.innerHTML = '';
-        quizFeedbackEl.className = 'quiz-feedback hidden';
-        nextQuestionBtn.classList.add('hidden');
-
-        q.options.forEach((opt, idx) => {
-            const btn = document.createElement('button');
-            btn.className = 'quiz-option-btn';
-            btn.innerHTML = `<span>${opt}</span> <i class="fa-regular fa-circle"></i>`;
-            btn.addEventListener('click', () => checkQuizAnswer(idx, btn));
-            quizOptionsEl.appendChild(btn);
-        });
+    .nav-menu.mobile-open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: var(--navbar-height);
+        left: 0;
+        right: 0;
+        background: var(--bg-glass);
+        backdrop-filter: var(--backdrop-blur);
+        -webkit-backdrop-filter: var(--backdrop-blur);
+        padding: 1.5rem;
+        gap: 1.2rem;
+        border-bottom: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-glass);
     }
 
-    function checkQuizAnswer(selectedIndex, selectedBtn) {
-        const q = quizQuestions[currentQuizIndex];
-        const buttons = quizOptionsEl.querySelectorAll('.quiz-option-btn');
-        buttons.forEach(b => b.disabled = true);
-
-        if (selectedIndex === q.correct) {
-            quizScore++;
-            selectedBtn.classList.add('correct');
-            selectedBtn.querySelector('i').className = 'fa-solid fa-circle-check';
-            quizFeedbackEl.textContent = q.exp;
-            quizFeedbackEl.className = 'quiz-feedback correct-bg';
-        } else {
-            selectedBtn.classList.add('wrong');
-            selectedBtn.querySelector('i').className = 'fa-solid fa-circle-xmark';
-            buttons[q.correct].classList.add('correct');
-            quizFeedbackEl.textContent = `Неверно. ${q.exp}`;
-            quizFeedbackEl.className = 'quiz-feedback wrong-bg';
-        }
-
-        nextQuestionBtn.classList.remove('hidden');
+    .mobile-menu-btn {
+        display: flex;
     }
 
-    if (nextQuestionBtn) {
-        nextQuestionBtn.addEventListener('click', () => {
-            currentQuizIndex++;
-            if (currentQuizIndex < quizQuestions.length) {
-                loadQuizQuestion();
-            } else {
-                showQuizResults();
-            }
-        });
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
 
-    function showQuizResults() {
-        document.getElementById('quizContainer').classList.add('hidden');
-        const resContainer = document.getElementById('quizResultContainer');
-        resContainer.classList.remove('hidden');
-
-        document.getElementById('resultScoreText').textContent = `Ваш результат: ${quizScore} из ${quizQuestions.length}`;
-        const commentEl = document.getElementById('resultComment');
-        if (quizScore === 5) commentEl.textContent = "Потрясающе! Вы настоящий эксперт по Санкт-Петербургу!";
-        else if (quizScore >= 3) commentEl.textContent = "Отличный результат! Вы прекрасно знаете Северную столицу.";
-        else commentEl.textContent = "Хорошая попытка! Наш путеводитель поможет вам узнать ещё больше.";
+    .footer-copy {
+        flex-direction: column;
+        gap: 0.5rem;
     }
 
-    const restartQuizBtn = document.getElementById('restartQuizBtn');
-    if (restartQuizBtn) {
-        restartQuizBtn.addEventListener('click', () => {
-            currentQuizIndex = 0;
-            quizScore = 0;
-            document.getElementById('quizResultContainer').classList.add('hidden');
-            document.getElementById('quizContainer').classList.remove('hidden');
-            loadQuizQuestion();
-        });
+    .ambient-player-bar {
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+        flex-direction: column;
+        gap: 0.6rem;
+        padding: 0.8rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-cta-group {
+        flex-direction: column;
+        width: 100%;
     }
 
-    /* ==========================================================================
-       8. GSAP SCROLLANIMATIONS & SCROLL-PROGRESS
-       ========================================================================== */
-    window.addEventListener('scroll', () => {
-        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        const progressBar = document.getElementById('progressBar');
-        if (progressBar) progressBar.style.width = scrolled + '%';
-    });
-
-    // Theme Toggle
-    const themeToggle = document.getElementById('themeToggle');
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            document.documentElement.classList.toggle('light');
-            const isLight = document.documentElement.classList.contains('light');
-            themeToggle.innerHTML = isLight ? `<i class="fa-solid fa-sun"></i>` : `<i class="fa-solid fa-moon"></i>`;
-        });
+    .apple-btn {
+        width: 100%;
+        justify-content: center;
     }
 
-    // Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const navMenu = document.getElementById('navMenu');
-    if (mobileMenuBtn && navMenu) {
-        mobileMenuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('mobile-open');
-        });
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('mobile-open');
-            });
-        });
+    .filter-container {
+        gap: 0.5rem;
     }
 
-    // GSAP ScrollTrigger Animations
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-        gsap.registerPlugin(ScrollTrigger);
-
-        gsap.from('[data-gsap="hero-title"]', {
-            duration: 1.2,
-            y: 50,
-            opacity: 0,
-            ease: 'power3.out',
-            delay: 0.2
-        });
-
-        gsap.from('[data-gsap="fade-up"]', {
-            duration: 1,
-            y: 30,
-            opacity: 0,
-            ease: 'power3.out',
-            delay: 0.5
-        });
-
-        gsap.from('[data-gsap="fade-up-delay"]', {
-            duration: 1,
-            y: 30,
-            opacity: 0,
-            ease: 'power3.out',
-            delay: 0.8
-        });
-
-        // Counter Numbers animation
-        const statNumbers = document.querySelectorAll('.stat-number');
-        statNumbers.forEach(stat => {
-            const target = parseInt(stat.getAttribute('data-count'), 10);
-            gsap.to(stat, {
-                innerText: target,
-                duration: 2,
-                snap: { innerText: 1 },
-                ease: 'power1.out',
-                scrollTrigger: {
-                    trigger: stat,
-                    start: 'top 85%'
-                }
-            });
-        });
-
-        // Reveal Elements on Scroll
-        const revealElements = document.querySelectorAll('[data-reveal]');
-        revealElements.forEach(el => {
-            gsap.fromTo(el,
-                { opacity: 0, y: 40 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: el,
-                        start: 'top 88%'
-                    }
-                }
-            );
-        });
+    .filter-btn {
+        font-size: 0.8rem;
+        padding: 0.5rem 1rem;
     }
 
-    // Initialize Map and Quiz
-    initMap();
-    loadQuizQuestion();
-});
+    .stop-header-flex {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+    }
+}
