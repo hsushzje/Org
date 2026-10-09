@@ -20,122 +20,134 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: 1,
             title: "1. Дворцовая площадь и Государственный Эрмитаж",
+            address: "Дворцовая площадь, 2 / набережная Дворцовая, 38",
             coords: [59.9398, 30.3146],
             category: "Музейное наследие",
-            image: "https://images.unsplash.com/photo-1558642084-fd07fae5282e?auto=format&fit=crop&w=1200&q=80",
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Palace_Square_in_Saint_Petersburg.jpg/1280px-Palace_Square_in_Saint_Petersburg.jpg",
             imageCaption: "Дворцовая площадь с Александровской колонной и Зимним дворцом",
-            description: "Главная площадь Санкт-Петербурга и один из самых выдающихся архитектурных ансамблей мира. В центре площади возвышается Александровская колонна (47,5 м), возведенная в честь победы над Наполеоном. Зимний дворец — бывшая резиденция российских императоров, ныне главный музей страны — Государственный Эрмитаж.",
-            significance: "Символ российской государственности и военной славы. Эрмитаж хранит более 3 миллионов произведений искусства, являясь мировым сокровищем."
+            description: "Главная площадь Санкт-Петербурга и один из наиболее совершенных архитектурных ансамблей мира. В центре площади возвышается Александровская колонна высотой 47,5 метра, вытесанная из цельного монолита красного гранита в честь победы России над Наполеоном. Северную часть площади занимает пышный Зимний дворец — бывшая резиденция российских императоров, созданная архитектором Бартоломео Растрелли в стиле пышного елизаветинского барокко. Ныне в нем располагается Государственный Эрмитаж.",
+            significance: "Символ российской государственности и мировой культуры. Коллекция Эрмитажа насчитывает свыше 3 миллионов произведений искусства, включая шедевры Леонардо да Винчи, Рембрандта и Тициана."
         },
         {
             id: 2,
             title: "2. Медный всадник и Сенатская площадь",
+            address: "Сенатская площадь, 1",
             coords: [59.9364, 30.3022],
             category: "Памятник & История",
-            image: "https://images.unsplash.com/photo-1513326718677-b964603b136d?auto=format&fit=crop&w=1200&q=80",
-            imageCaption: "Памятник Петру I на Гром-камне",
-            description: "Памятник основателю города Петру I, открытый в 1782 году по проекту французского скульптора Этьена Фальконе. Бронзовая конная статуя покоится на гигантском «Гром-камне» весом более 1500 тонн. Поэма А.С. Пушкина увековечила этот памятник как имя нарицательное.",
-            significance: "Главный градостроительный и поэтический символ Санкт-Петербурга, олицетворяющий стремительный порыв России в будущее."
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Saint_Petersburg_Bronze_Horseman_1.jpg/1280px-Saint_Petersburg_Bronze_Horseman_1.jpg",
+            imageCaption: "Памятник Петру I (Медный всадник) на Гром-камне",
+            description: "Величайший памятник основателю города императору Петру I, торжественно открытый 7 августа 1782 года по указу Екатерины II. Автором скульптуры выступил французский мастер Этьен Морис Фальконе. Бронзовая конная статуя вздыблена над пропастью на гигантском пьедестале — «Гром-камне» весом более 1500 тонн, доставленном из окрестностей Лахты. Поэма А.С. Пушкина навсегда сделала имя «Медный всадник» поэтической метафорой Петербурга.",
+            significance: "Главный градостроительный и символический знак Санкт-Петербурга, выражающий непреклонную волю и стремительный порыв России к просвещению и морскому могуществу."
         },
         {
             id: 3,
             title: "3. Исаакиевский собор",
+            address: "Исаакиевская площадь, 4",
             coords: [59.9341, 30.3061],
             category: "Архитектура & Религия",
-            image: "https://images.unsplash.com/photo-1548834925-e48f8a27ae6f?auto=format&fit=crop&w=1200&q=80",
-            imageCaption: "Купол Исаакиевского собора над городом",
-            description: "Крупнейший православный храм Санкт-Петербурга, строившийся 40 лет (1818–1858) по проекту Огюста Монферрана. Купол покрыт 100 кг чистого золота. Солончак и мощные 112 монолитных гранитных колонн делают собор одним из величайших купольных зданий мира.",
-            significance: "Главный кафедральный собор Российской империи, шедевр позднего классицизма и уникальный инженерный подвиг XIX века."
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Saint_Isaac%27s_Cathedral_SPB.jpg/1280px-Saint_Isaac%27s_Cathedral_SPB.jpg",
+            imageCaption: "Величественный купол и колоннада Исаакиевского собора",
+            description: "Крупнейший православный храм Санкт-Петербурга и один из самых высоких купольных соборов мира (101,5 м). Строительство собора продолжалось 40 лет (1818–1858) под руководством архитекторов Огюста Монферрана. Здание обрамляют 112 цельных гранитных колонн весом до 114 тонн каждая. На позолоту главного купола и креста ушло более 100 килограммов чистого золота. Внутри собора сохраняются уникальные витражи, живопись и мозаики общей площадью более 600 кв. метров.",
+            significance: "Главный кафедральный храм Российской империи, выдающийся памятник позднего классицизма и технический шедевр мирового зодчества."
         },
         {
             id: 4,
             title: "4. Невский проспект и Казанский собор",
+            address: "Невский проспект, 25 / Казанская площадь, 2",
             coords: [59.9343, 30.3246],
             category: "Главная артерия",
-            image: "https://images.unsplash.com/photo-1572985025344-3151834e5659?auto=format&fit=crop&w=1200&q=80",
-            imageCaption: "Казанский собор на Невском проспекте",
-            description: "Казанский собор, возведенный архитектором Андреем Воронихиным в 1801–1811 годах, напоминает Собор Святого Петра в Риме благодаря полукруглой колоннаде из 94 колонн. Здесь похоронен фельдмаршал М.И. Кутузов и хранилась чудотворная Казанская икона Божией Матери.",
-            significance: "Памятник русской военной славы Отечественной войны 1812 года и духовный центр на главной магистрали города."
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Kazan_Cathedral_SPB_2017.jpg/1280px-Kazan_Cathedral_SPB_2017.jpg",
+            imageCaption: "Полукруглая колоннада Казанского собора на Невском проспекте",
+            description: "Казанский кафедральный собор, построение которого завершилось в 1811 году по проекту выдающегося русского архитектора Андрея Воронихина. Архитектурный облик здания с уникальной полукруглой грандиозной колоннадой из 94 колонн обращен к Невскому проспекту. В соборе погребен великий русский полководец Михаил Илларионович Кутузов, а также хранятся трофейные ключи от взятых французских городов и чудотворная Казанская икона Божией Матери.",
+            significance: "Главный мемориал русской военной славы и победы в Отечественной войне 1812 года, а также духовное сердце главнейшей магистрали города."
         },
         {
             id: 5,
             title: "5. Храм Спаса на Крови",
+            address: "набережная канала Грибоедова, 2б",
             coords: [59.9401, 30.3289],
             category: "Шедевр мозаики",
-            image: "https://images.unsplash.com/photo-1520106212299-d99c443e4568?auto=format&fit=crop&w=1200&q=80",
-            imageCaption: "Яркие купола Спаса на Крови над каналом Грибоедова",
-            description: "Собор Воскресения Христова сооружен на месте, где 1 марта 1881 года был смертельно ранен император Александр II. Храм выполнен в «русском стиле» по образцу собора Василия Блаженного. Интерьер украшает свыше 7500 кв. метров уникальной мозаики.",
-            significance: "Уникальный мемориальный архитектурный комплекс и одна из крупнейших коллекций монументальной мозаики в Европе."
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Church_of_the_Saviour_on_Spilled_Blood_in_St_Petersburg.jpg/1280px-Church_of_the_Saviour_on_Spilled_Blood_in_St_Petersburg.jpg",
+            imageCaption: "Мозаичные купола и фасад собора Воскресения Христова",
+            description: "Православный собор Воскресения Христова, воздвигнутый на том самом месте, где 1 марта 1881 года в результате покушения народовольцев был смертельно ранен император Александр II. Храм построен в так называемом «русском стиле» по проекту Альфреда Парланда и архимандрита Игнатия, вызывая ассоциации с собором Василия Блаженного в Москве. Внутреннее убранство представляет собой крупнейшую в Европе коллекцию мозаики — более 7500 квадратных метров полотен.",
+            significance: "Уникальный царский мемориал и драгоценный музей монументального мозаичного искусства мирового уровня."
         },
         {
             id: 6,
             title: "6. Летний сад и Дворец Петра I",
+            address: "Летний сад, Набережная Кутузова, 2",
             coords: [59.9449, 30.3355],
             category: "Парковое искусство",
-            image: "https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=1200&q=80",
-            imageCaption: "Аллеи Летнего сада и знаменитая решетка",
-            description: "Старейший парк Санкт-Петербурга, заложенный по повелению Петра I в 1704 году как летняя царская резиденция. Парк известен мраморными итальянскими скульптурами, фонтанами и изящной оградой архитектора Юрия Фельтена.",
-            significance: "Эталон барочного садово-паркового искусства XVIII века и любимое место прогулок Петербургской интеллигенции."
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Summer_Garden_SPB_Alley.jpg/1280px-Summer_Garden_SPB_Alley.jpg",
+            imageCaption: "Аллеи Летнего сада с мраморными скульптурами",
+            description: "Старейший парк Санкт-Петербурга, заложенный лично Петром I в 1704 году как регулярный резиденциальный сад в стиле европейского барокко. Здесь расположен Летний дворец Петра I — одно из первейших каменных зданий города. Парк знаменит своей коллекцией итальянских мраморных скульптур XVIII века, фонтанами, шпалерами и всемирно известной оградой со стороны Невы, созданной архитектором Юрием Фельтеном.",
+            significance: "Жемчужина садово-паркового искусства Петровской эпохи, любимое место вдохновения великих поэтов и писателей."
         },
         {
             id: 7,
             title: "7. Петропавловская крепость и Заячий остров",
+            address: "Заячий остров, Петропавловская крепость, 3",
             coords: [59.9502, 30.3164],
             category: "Колыбель города",
-            image: "https://images.unsplash.com/photo-1561542320-9a18cf340450?auto=format&fit=crop&w=1200&q=80",
-            imageCaption: "Шпиль Петропавловского собора на фоне Невы",
-            description: "Заложена 27 мая 1703 года — именно этот день считается днем рождения Санкт-Петербурга. В центре крепости расположен Петропавловский собор со шпилем высотой 122,5 м, увенчанным фигурой летящего ангела. Собор служит усыпальницей русских царей от Петра I до Николая II.",
-            significance: "Исторический ядро города, фортификационный шедевр и усыпальница Дома Романовых."
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Peter_and_Paul_Fortress_SPB_View.jpg/1280px-Peter_and_Paul_Fortress_SPB_View.jpg",
+            imageCaption: "Петропавловский собор и золоченый шпиль с ангелом",
+            description: "Крепость заложена 27 мая 1703 года по совместному чертежу Петра I и инженера Жозефа Ламбера де Герена — дата основания крепости стала официальным днем рождения Санкт-Петербурга. На территории находится Петропавловский собор (архитектор Доменико Трезини) с позолоченным шпилем высотой 122,5 метра, вершину которого венчают крест и фигура парящего ангела.",
+            significance: "Историческое ядро Санкт-Петербурга, первоклассный памятник русскому фортификационному искусству и усыпальница императорского дома Романовых."
         },
         {
             id: 8,
             title: "8. Стрелка Васильевского острова и Биржа",
+            address: "Биржевая площадь, 4",
             coords: [59.9436, 30.3060],
             category: "Ансамбль & Вид",
-            image: "https://images.unsplash.com/photo-1513326718677-b964603b136d?auto=format&fit=crop&w=1200&q=80",
-            imageCaption: "Ростральные колонны и здание Биржи",
-            description: "Градостроительный ансамбль, где река Нева делится на Большую и Малую. Две Ростральные колонны высотой 32 м украшены рострами (носами) захваченных вражеских кораблей и аллегорическими фигурами великих русских рек: Волги, Днепра, Волхова и Невы.",
-            significance: "Символ Санкт-Петербурга как морского порта и торговой столицы Российской империи."
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Strelka_Vasilievsky_Island_St_Petersburg.jpg/1280px-Strelka_Vasilievsky_Island_St_Petersburg.jpg",
+            imageCaption: "Стрелка Васильевского острова, здание Биржи и Ростральные колонны",
+            description: "Один из наиболее завораживающих архитектурных ансамблей Петербурга, где река Нева разделяется на Большую и Малую Невку. Центральным объектом выступает здание Биржи, выполненное Тома де Томоном в виде античного периптера. Перед Биржей стоят две 32-метровые Ростральные колонны, украшенные скульптурными рострами (носовыми частями) кораблей и олицетворяющие великие реки России: Волгу, Днепр, Волхов и Неву.",
+            significance: "Символ морского торгового могущества России и главная панорамная смотровая точка акватории Невы."
         },
         {
             id: 9,
             title: "9. Кунсткамера и Здание 12 коллегий",
+            address: "Университетская набережная, 3 / 7–9",
             coords: [59.9414, 30.3045],
             category: "Наука & Образование",
-            image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=1200&q=80",
-            imageCaption: "Здание Кунсткамеры — Музея антропологии и этнографии",
-            description: "Первый музей России, основанный Петром I в 1714 году для сбора и исследования анатомических редкостей и этнографических предметов. Рядом расположено здание Двенадцати коллегий — ныне главный корпус Санкт-Петербургского государственного университета (СПбГУ).",
-            significance: "Родоначальник всей российской музейной науки и Академии наук."
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Kunstkamera_St_Petersburg.jpg/1280px-Kunstkamera_St_Petersburg.jpg",
+            imageCaption: "Здание Кунсткамеры — Музея антропологии и этнографии им. Петра Великого",
+            description: "Первый публичный музей России, учрежденный Петром I в 1714 году для сбора редкостей, анатомических и этнографических коллекций. Башня здания Кунсткамеры увенчана астрономической сферой. Неподалеку вытянулось на 400 метров здание Двенадцати коллегий, возведенное Доменико Трезини для высших органов государственного управления, а ныне являющееся главным корпусом Санкт-Петербургского государственного университета (СПбГУ).",
+            significance: "Колыбель российской академической науки, высшего образования и музейного дела."
         },
         {
             id: 10,
             title: "10. Крейсер «Аврора»",
+            address: "Петроградская набережная, у Заячьего/Пенькового моста",
             coords: [59.9554, 30.3378],
             category: "Морская история",
-            image: "https://images.unsplash.com/photo-1548834925-e48f8a27ae6f?auto=format&fit=crop&w=1200&q=80",
-            imageCaption: "Легендарный крейсер 1-го ранга «Аврора» у Петроградской набережной",
-            description: "Крейсер 1-го ранга Балтийского флота, принявший участие в Русско-японской и Первой мировой войнах. Холостой выстрел с «Авроры» 25 октября 1917 года послужил сигналом к штурму Зимнего дворца и началу Октябрьской революции.",
-            significance: "Корабль-музей, поворотный символ отечественной и мировой истории XX века."
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Cruiser_Aurora_St_Petersburg_2018.jpg/1280px-Cruiser_Aurora_St_Petersburg_2018.jpg",
+            imageCaption: "Легендарный крейсер 1-го ранга «Аврора» на вечной стоянке",
+            description: "Бронепалубный крейсер 1-го ранга Балтийского флота, спущенный на воду в 1900 году. Корабль принимал участие в Цусимском сражении Русско-японской войны и Первой мировой войне. 25 октября (7 ноября) 1917 года холостой выстрел из носового орудия «Авроры» послужил сигналом к началу штурма Зимнего дворца. Ныне кораблю присвоен статус корабля-музея в составе Центрального военно-морского музея.",
+            significance: "Легендарный памятник отечественного кораблестроения и символ ключевых исторических событий XX века."
         },
         {
             id: 11,
             title: "11. Мариинский театр и Театральная площадь",
+            address: "Театральная площадь, 1",
             coords: [59.9257, 30.2961],
             category: "Опера & Балет",
-            image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80",
-            imageCaption: "Здание Мариинского театра",
-            description: "Один из ведущих музыкальных театров мира, открытый в 1860 году. Здесь состоялись премьеры опер Мусоргского, Чайковского, Римского-Корсакова и балетов Петипа. Театр подарил миру величайших артистов от Шаляпина до Улановой и Плисецкой.",
-            significance: "Храм русского балета и оперного искусства, задающий мировые стандарты исполнительства."
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Mariinsky_Theatre_St_Petersburg.jpg/1280px-Mariinsky_Theatre_St_Petersburg.jpg",
+            imageCaption: "Историческое здание Мариинского театра",
+            description: "Один из ведущих музыкальных театров планеты, названный в честь императрицы Марии Александровны и открытый в 1860 году по проекту Альберта Кавоса. На этой сцене состоялись мировые премьеры великих опер Мусоргского, Чайковского, Римского-Корсакова и балетов Мариуса Петипа. Театр взрастил мировых гениев сцены: от Фёдора Шаляпина до Анны Павловой, Галины Улановой и Майи Плисецкой.",
+            significance: "Мировой центр оперного и балетного искусства, формирующий культурные стандарты высокого исполнительства."
         },
         {
             id: 12,
             title: "12. Никольский Морской собор и Новая Голландия",
+            address: "Никольская площадь, 1 / набережная Адмиралтейского канала, 2",
             coords: [59.9224, 30.2997],
             category: "Душа Коломны",
-            image: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=80",
-            imageCaption: "Никольский собор и рукотворный остров Новая Голландия",
-            description: "Николо-Богоявленский Морской собор — выдающийся памятник елизаветинского барокко, традиционно окормляющий моряков Российского флота. Неподалеку расположен остров Новая Голландия — уникальный памятник промышленной архитектуры XVIII века, превращенный в современное культурное пространство.",
-            significance: "Сердце исторического района Коломна, объединяющее духовную веру моряков и современную креативную жизнь города."
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Saint_Nicholas_Naval_Cathedral_SPB.jpg/1280px-Saint_Nicholas_Naval_Cathedral_SPB.jpg",
+            imageCaption: "Николо-Богоявленский Морской собор у Крюкова канала",
+            description: "Николо-Богоявленский Морской собор — выдающийся памятник елизаветинского барокко архитектора Саввы Чевакинского, традиционно являющийся духовным центром всех российских военных моряков. Рядом расположился рукотворный остров Новая Голландия — уникальный комплекс складских зданий XVIII века с арочными порталами Валлен-Деламота, отреставрированный и превращенный в самое современное культурное пространство Петербурга.",
+            significance: "Атмосферное сердце исторического района Коломна, где пересекаются морские духовные традиции России и современная общественная жизнь."
         }
     ];
 
@@ -169,10 +181,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Standard OpenStreetMap Tiles (Free, No API Key Required)
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-            maxZoom: 19
+        // CartoDB High-Quality Tiles (CARTO / OpenStreetMap - European & American Provider)
+        const darkTilesUrl = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+        const lightTilesUrl = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+        const isLightMode = document.documentElement.classList.contains('light');
+
+        window.mapTileLayer = L.tileLayer(isLightMode ? lightTilesUrl : darkTilesUrl, {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            maxZoom: 19,
+            subdomains: 'abcd'
         }).addTo(map);
 
         const latLngs = routeStops.map(stop => stop.coords);
@@ -256,6 +273,10 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 document.getElementById('stopNumber').textContent = `Остановка ${stop.id < 10 ? '0' + stop.id : stop.id} из ${routeStops.length}`;
                 document.getElementById('stopTitle').textContent = stop.title;
+                const addrEl = document.getElementById('stopAddress');
+                if (addrEl && stop.address) {
+                    addrEl.innerHTML = `<i class="fa-solid fa-map-location-dot"></i> ${stop.address}`;
+                }
                 document.getElementById('stopCoords').innerHTML = `<i class="fa-solid fa-location-pin"></i> ${stop.coords[0]}° N, ${stop.coords[1]}° E`;
                 document.getElementById('stopCategory').innerHTML = `<i class="fa-solid fa-tag"></i> ${stop.category}`;
                 document.getElementById('stopImage').src = stop.image;
@@ -311,6 +332,21 @@ document.addEventListener('DOMContentLoaded', () => {
        ========================================================================== */
     const audioGuideBtn = document.getElementById('audioGuideBtn');
     let isSpeaking = false;
+    let russianVoices = [];
+
+    function loadVoices() {
+        if ('speechSynthesis' in window) {
+            const voices = window.speechSynthesis.getVoices();
+            russianVoices = voices.filter(v => v.lang.includes('ru') || v.lang.includes('RU'));
+        }
+    }
+
+    if ('speechSynthesis' in window) {
+        loadVoices();
+        if (window.speechSynthesis.onvoiceschanged !== undefined) {
+            window.speechSynthesis.onvoiceschanged = loadVoices;
+        }
+    }
 
     if (audioGuideBtn) {
         audioGuideBtn.addEventListener('click', () => {
@@ -319,26 +355,46 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.speechSynthesis.cancel();
                     isSpeaking = false;
                     audioGuideBtn.innerHTML = `<i class="fa-solid fa-volume-high"></i> <span>Аудиогид (Озвучить)</span>`;
+                    audioGuideBtn.classList.remove('speaking');
                     return;
                 }
 
+                window.speechSynthesis.cancel();
+
                 const stop = routeStops[currentStopIndex];
-                const textToSpeak = `${stop.title}. ${stop.description} Значение объекта: ${stop.significance}`;
+                const textToSpeak = `${stop.title}. Адрес: ${stop.address || ''}. ${stop.description} Историческое значение: ${stop.significance}`;
 
                 const utterance = new SpeechSynthesisUtterance(textToSpeak);
                 utterance.lang = 'ru-RU';
                 utterance.rate = 0.95;
+                utterance.pitch = 1.0;
+
+                if (russianVoices.length > 0) {
+                    utterance.voice = russianVoices[0];
+                }
+
+                utterance.onstart = () => {
+                    isSpeaking = true;
+                    audioGuideBtn.innerHTML = `<i class="fa-solid fa-stop"></i> <span>Остановить аудио</span>`;
+                    audioGuideBtn.classList.add('speaking');
+                };
 
                 utterance.onend = () => {
                     isSpeaking = false;
                     audioGuideBtn.innerHTML = `<i class="fa-solid fa-volume-high"></i> <span>Аудиогид (Озвучить)</span>`;
+                    audioGuideBtn.classList.remove('speaking');
+                };
+
+                utterance.onerror = (e) => {
+                    console.warn('Speech synthesis error:', e);
+                    isSpeaking = false;
+                    audioGuideBtn.innerHTML = `<i class="fa-solid fa-volume-high"></i> <span>Аудиогид (Озвучить)</span>`;
+                    audioGuideBtn.classList.remove('speaking');
                 };
 
                 window.speechSynthesis.speak(utterance);
-                isSpeaking = true;
-                audioGuideBtn.innerHTML = `<i class="fa-solid fa-stop"></i> <span>Остановить аудио</span>`;
             } else {
-                alert('Ваш браузер не поддерживает встроенный синтез речи.');
+                alert('Ваш браузер не поддерживает синтез речи.');
             }
         });
     }
@@ -347,57 +403,92 @@ document.addEventListener('DOMContentLoaded', () => {
        4. AMBIENT WATER & RAIN SOUND SYNTHESIZER (WEB AUDIO API)
        ========================================================================== */
     let audioCtx;
-    let noiseNode;
+    let currentSource = null;
+    let gainNode = null;
     let isAmbientPlaying = false;
+    let masterVolume = 0.25;
 
-    function createAmbientSound(type) {
+    function initAudioContext() {
         if (!audioCtx) {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+            audioCtx = new AudioContextClass();
         }
-
         if (audioCtx.state === 'suspended') {
             audioCtx.resume();
         }
+    }
 
-        // Generate Pink / Brown Noise for rain or river waves
-        const bufferSize = audioCtx.sampleRate * 2;
-        const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-        const output = noiseBuffer.getChannelData(0);
+    function createAmbientSound(type) {
+        stopAmbientSound();
+        initAudioContext();
 
-        let lastOut = 0.0;
-        for (let i = 0; i < bufferSize; i++) {
-            const white = Math.random() * 2 - 1;
-            output[i] = (lastOut + (0.02 * white)) / 1.02;
-            lastOut = output[i];
-            output[i] *= 3.5; // Gain boost
+        const bufferSize = audioCtx.sampleRate * 3;
+        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const data = buffer.getChannelData(0);
+
+        if (type === 'rain') {
+            // Realistic rain sound generator using filtered noise
+            let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+            for (let i = 0; i < bufferSize; i++) {
+                const white = Math.random() * 2 - 1;
+                b0 = 0.99886 * b0 + white * 0.0555179;
+                b1 = 0.99332 * b1 + white * 0.0750759;
+                b2 = 0.96900 * b2 + white * 0.1538520;
+                b3 = 0.86650 * b3 + white * 0.3104856;
+                b4 = 0.55000 * b4 + white * 0.5329522;
+                b5 = -0.7616 * b5 - white * 0.0168980;
+                data[i] = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
+                data[i] *= 0.11;
+                b6 = white * 0.115926;
+            }
+        } else {
+            // Neva River waves modulation generator
+            for (let i = 0; i < bufferSize; i++) {
+                const t = i / audioCtx.sampleRate;
+                const waveLFO = Math.sin(2 * Math.PI * 0.12 * t) * 0.5 + 0.5;
+                const white = Math.random() * 2 - 1;
+                data[i] = white * (0.2 + 0.8 * waveLFO);
+            }
         }
 
-        noiseNode = audioCtx.createBufferSource();
-        noiseNode.buffer = noiseBuffer;
-        noiseNode.loop = true;
+        currentSource = audioCtx.createBufferSource();
+        currentSource.buffer = buffer;
+        currentSource.loop = true;
 
         const filter = audioCtx.createBiquadFilter();
-        filter.type = type === 'rain' ? 'lowpass' : 'bandpass';
-        filter.frequency.value = type === 'rain' ? 800 : 400;
+        if (type === 'rain') {
+            filter.type = 'lowpass';
+            filter.frequency.value = 1200;
+        } else {
+            filter.type = 'bandpass';
+            filter.frequency.value = 450;
+            filter.Q.value = 1.2;
+        }
 
-        const gainNode = audioCtx.createGain();
-        gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gainNode = audioCtx.createGain();
+        gainNode.gain.setValueAtTime(masterVolume, audioCtx.currentTime);
 
-        noiseNode.connect(filter);
+        currentSource.connect(filter);
         filter.connect(gainNode);
         gainNode.connect(audioCtx.destination);
 
-        noiseNode.start();
+        currentSource.start();
         isAmbientPlaying = true;
+
+        const ambientToggleBtn = document.getElementById('ambientToggle');
+        if (ambientToggleBtn) ambientToggleBtn.classList.add('playing');
     }
 
     function stopAmbientSound() {
-        if (noiseNode) {
-            noiseNode.stop();
-            noiseNode.disconnect();
-            noiseNode = null;
+        if (currentSource) {
+            try { currentSource.stop(); } catch(e){}
+            currentSource.disconnect();
+            currentSource = null;
         }
         isAmbientPlaying = false;
+
+        const ambientToggleBtn = document.getElementById('ambientToggle');
+        if (ambientToggleBtn) ambientToggleBtn.classList.remove('playing');
     }
 
     const ambientToggle = document.getElementById('ambientToggle');
@@ -406,17 +497,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (ambientToggle) {
         ambientToggle.addEventListener('click', () => {
             ambientPlayerBar.classList.toggle('hidden');
-            ambientToggle.classList.toggle('playing');
         });
     }
 
     const playRainBtn = document.getElementById('playRainBtn');
     const playWavesBtn = document.getElementById('playWavesBtn');
     const stopAmbientBtn = document.getElementById('stopAmbientBtn');
+    const ambientVolumeSlider = document.getElementById('ambientVolume');
 
-    if (playRainBtn) playRainBtn.addEventListener('click', () => { stopAmbientSound(); createAmbientSound('rain'); });
-    if (playWavesBtn) playWavesBtn.addEventListener('click', () => { stopAmbientSound(); createAmbientSound('waves'); });
+    if (playRainBtn) playRainBtn.addEventListener('click', () => createAmbientSound('rain'));
+    if (playWavesBtn) playWavesBtn.addEventListener('click', () => createAmbientSound('waves'));
     if (stopAmbientBtn) stopAmbientBtn.addEventListener('click', () => stopAmbientSound());
+
+    if (ambientVolumeSlider) {
+        ambientVolumeSlider.addEventListener('input', (e) => {
+            masterVolume = parseFloat(e.target.value);
+            if (gainNode && audioCtx) {
+                gainNode.gain.setValueAtTime(masterVolume, audioCtx.currentTime);
+            }
+        });
+    }
 
     /* ==========================================================================
        5. CHART.JS CLIMATE PROFILE WIDGET
@@ -647,6 +747,17 @@ document.addEventListener('DOMContentLoaded', () => {
             document.documentElement.classList.toggle('light');
             const isLight = document.documentElement.classList.contains('light');
             themeToggle.innerHTML = isLight ? `<i class="fa-solid fa-sun"></i>` : `<i class="fa-solid fa-moon"></i>`;
+
+            if (window.mapTileLayer && map) {
+                map.removeLayer(window.mapTileLayer);
+                const darkTilesUrl = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+                const lightTilesUrl = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+                window.mapTileLayer = L.tileLayer(isLight ? lightTilesUrl : darkTilesUrl, {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                    maxZoom: 19,
+                    subdomains: 'abcd'
+                }).addTo(map);
+            }
         });
     }
 
